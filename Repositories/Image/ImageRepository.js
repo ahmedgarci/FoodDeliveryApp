@@ -1,17 +1,18 @@
-const image = require("../../Entities/ImageEntity")
+const image = require("../../Entities/ImageEntity");
 
 module.exports = class ImageRepository{
     
     static async saveImage({_publicId,_secureUrl}){
         try{
-            let image = await image.create({
+            let createdImage = await image.create({
                 publicId:_publicId,
                 imageUrl:_secureUrl
             })
-            await image.save();
+            await createdImage.save();
             return {
+                id:createdImage._id,
                 imageUrl: _secureUrl,
-                id:image._id
+                
             };
         }catch(e){
             throw new Error("error while saving the image")

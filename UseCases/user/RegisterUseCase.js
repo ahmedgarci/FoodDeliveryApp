@@ -25,7 +25,7 @@ const userRepository = require("../../Repositories/User/userRepository");
                 message:"please check ur email in order to activate ur account"
             }
             }catch(e){
-                throw new Error(e.message)
+                throw e
         }
 
     }

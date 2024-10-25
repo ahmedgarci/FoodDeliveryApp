@@ -22,7 +22,7 @@ const userRepository = require("../../Repositories/User/userRepository");
            //     id:user.id
             }
             }catch(e){
-                throw new Error(e.message)
+                throw e
         }
 
     }

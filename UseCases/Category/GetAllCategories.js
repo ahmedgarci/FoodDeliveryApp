@@ -1,10 +1,12 @@
 const CategoryRepository = require("../../Repositories/Category/CategoryRepository")
 
 
-module.exports = async(categoryName)=>{
+module.exports = async()=>{
+
     try{
-        return await CategoryRepository.findFoodsByCategory(categoryName)
+        await CategoryRepository.getAllCategories();
     }catch(e){
         throw e
     }
+
 }

@@ -13,7 +13,8 @@ module.exports = class CloudinaryService{
                 public_id: result.public_id,
                 url:result.secure_url
             };
-        } catch (error) {
+        } catch (e) {
+            console.log(e);
             throw new Error(e.message)
         }
     }

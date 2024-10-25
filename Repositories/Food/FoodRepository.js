@@ -24,7 +24,10 @@ module.exports = class FoodRepository{
 
     static async getAllFoods(){
         try{
-            return await food.find({});
+            return await food.find({})
+            .populate(["categoryName","imageId"])
+            .select(["_id","name","Price","Description","createdAt"])
+            ;
         }catch(e){
             throw new Error(e.message)
         }

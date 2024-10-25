@@ -1,8 +1,8 @@
-const ActivateAccountUseCase = require("../UseCases/user/ActivateAccountUseCase");
-const LoginUseCase = require("../UseCases/user/LoginUseCase");
-const RegisterUseCase = require("../UseCases/user/RegisterUseCase");
+const ActivateAccountUseCase = require("../../UseCases/user/ActivateAccountUseCase");
+const LoginUseCase = require("../../UseCases/user/LoginUseCase");
+const RegisterUseCase = require("../../UseCases/user/RegisterUseCase");
 
-class UserController{
+class AuthController{
     
     static async Register(req,res){
         try{
@@ -22,7 +22,8 @@ class UserController{
             // TO DO VAALIDATE LOGIN REQUEST
         const{email,password} = req.body;
         const {token} = await LoginUseCase({_email:email,_password:password})
-           return res.json({"token":token})
+        res.cookie("token",token)
+        return res.json({"token":token})
         }catch(e){
             return res.json({error:e.message})
         }
@@ -31,6 +32,7 @@ class UserController{
     static async activateAccount(req,res){
         try{
             const {code} = req.query
+            
             await ActivateAccountUseCase(code)
             return res.json({message:"account activated ! "})
         }catch(e){
@@ -44,4 +46,4 @@ class UserController{
 
 }
 
-module.exports = UserController
+module.exports = AuthController

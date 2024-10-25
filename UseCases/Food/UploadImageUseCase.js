@@ -1,5 +1,5 @@
 const ImageRepository = require("../../Repositories/Image/ImageRepository");
-const CloudinaryService = require("../Infrastructure/Cloudinary/CloudinaryService");
+const CloudinaryService = require("../../Infrastructure/Cloudinary/CloudinaryService");
 
 module.exports = async(filePath)=>{
     try{
@@ -9,6 +9,6 @@ module.exports = async(filePath)=>{
             imageUrl,id
         }
     }catch(e){
-        throw new Error(e.message)
+        throw e
     }   
 }

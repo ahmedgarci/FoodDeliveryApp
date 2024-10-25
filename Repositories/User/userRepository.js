@@ -1,3 +1,4 @@
+const { mongo } = require("mongoose")
 const User = require("../../Entities/userEntity")
 const roleRepository = require("../Role/roleRepository")
 
@@ -34,13 +35,39 @@ class UserRepository {
         try{
             let user = await User.findOneAndUpdate({_id:id},{[property]:newValue},{new:true})
                 .orFail(new Error("cannot update the user !"))
-                    return user;
             await user.save();
-            
+            return user;
         }catch(e){
             throw new Error(e.message)
         }
     }
+
+    // TO DO GET ALL USERS WITHOUT ADMIN
+    static async getAllUsers(){
+        try{
+            const allusers = await User.find({})
+            .select(["username","email","address"])
+            .orFail(()=>new Error("error while fetching users"))
+            return allusers;
+        }catch(e){
+            throw new Error(e.message)
+        }
+    }
+    static async deleteUser(id){
+        try{
+            return await User.findByIdAndDelete(id).orFail(()=>new Error("error while deleting user"))
+        }catch(e){
+            throw new Error(e.message)
+        }
+    }
+
+
+
+
+
+
+
+
 }
 
 module.exports = UserRepository

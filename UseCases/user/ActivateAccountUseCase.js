@@ -5,7 +5,7 @@ module.exports = async(codeInserted)=>{
         await MailService.validateToken(codeInserted)
         
     }catch(e){
-        throw new Error(e.message)
+        throw e
     }
 
 }

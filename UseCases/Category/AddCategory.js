@@ -3,8 +3,10 @@ const CategoryRepository = require("../../Repositories/Category/CategoryReposito
 
 module.exports = async(categoryName)=>{
     try{
-        return await CategoryRepository.findFoodsByCategory(categoryName)
+        await CategoryRepository.createNewCategory(categoryName);
     }catch(e){
         throw e
     }
+
+
 }
