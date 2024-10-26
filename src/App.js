@@ -9,6 +9,7 @@ function App() {
   return (
       <Router>
            <NavigationBar/>
+           <P></P>
         <Routes>
           <Route path='/' Component={HomePage}/>
           <Route path='/auth' Component={Authenticate}/>
