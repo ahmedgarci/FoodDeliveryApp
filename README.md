@@ -2,4 +2,4 @@ This project is written in clean architecture in order to achieve scalability & 
 I used Cloudinary to upload photos and Redis library to cache massive data.
 
 Database Schema : 
-![Concept map](https://github.com/user-attachments/assets/2505d3c2-8ffe-4384-8c59-a763f65a39c0)
+![Concept map (1)](https://github.com/user-attachments/assets/6cbf3f17-fc0d-44c9-bc86-cbe159466184)
