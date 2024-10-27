@@ -1,5 +1,11 @@
+import { useState } from "react"
+import { Login } from "../Functions/Auth/Login"
 
 function Authenticate(){
+
+
+  
+
     return(
         <div className="bg-gray-100 flex items-center justify-center h-screen">
              <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -40,7 +46,9 @@ function Authenticate(){
         <label class="block text-gray-600" for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-yellow-500" placeholder="Confirm your password" />
       </div>
-      <button class="w-full bg-yellow-500 text-white py-2 rounded-md font-semibold hover:bg-yellow-600">Register</button>
+      <button onClick={()=>Login({
+        email:"ahmedgarci146@gmail.com",password:"12345678"
+      })} class="w-full bg-yellow-500 text-white py-2 rounded-md font-semibold hover:bg-yellow-600">Register</button>
       <p class="text-center text-gray-600 mt-4">Already have an account? <span class="text-yellow-500 cursor-pointer" onclick="toggleForm('login')">Login here</span>.</p>
     </form>
   </div>

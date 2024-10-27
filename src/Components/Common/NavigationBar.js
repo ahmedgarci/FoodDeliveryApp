@@ -14,4 +14,5 @@ function NavigationBar(){
   </header>
     )
 }
+
 export {NavigationBar}

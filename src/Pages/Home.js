@@ -1,12 +1,9 @@
-import { FoodCard } from "../Components/Home/FoodCard"
 import { OrderStages } from "../Components/Home/OrderStages"
-import FetchDataComponent from "../Hooks/useEffect/GetDataFromBackend"
-import LoadingComponent from "../Components/Common/LoadingComponent"
-import ErrorComponent from "../Components/Common/ErrorComponent"
+import { LatestFoods } from "../Components/Home/Food/LatestFoods"
+import ServicesOffered from "../Components/Common/Service"
 
 function HomePage (){
     
-        const {data,loading,error} = FetchDataComponent({url:null,method:"GET"})
 
     return(
         <div>    
@@ -20,11 +17,9 @@ function HomePage (){
       </div>
     </div>
   </section>
+      
 
-        { loading ? <LoadingComponent/>:
-        error && <ErrorComponent/>
-    }        
-        <FoodCard name="Cheese Burger" price="aa" />
+        <LatestFoods />
         <OrderStages />
  
 
@@ -40,16 +35,7 @@ function HomePage (){
     </div>
   </section>
 
-  <section class="container mx-auto my-12">
-    <h3 class="text-2xl font-semibold text-center mb-8">Featured Restaurants</h3>
-    <div class="grid grid-cols-5 gap-4">
-      <div class="bg-white p-4 rounded shadow">
-        <img src="https://via.placeholder.com/150" alt="Restaurant" class="rounded" />
-        <p class="mt-4 font-semibold">Foodcourt</p>
-        <p class="text-gray-500">Open Now</p>
-      </div>
-    </div>
-  </section>
+  <ServicesOffered/>
 
    
       </div>

@@ -18,7 +18,7 @@ function FetchDataComponent({ url , method }) {
           throw new Error("error while importing data ");
         }
         const result = await response.json();
-        setData(result);
+        setData(result.message);
       } catch (error) {
         setError("oops error");
       } finally {
