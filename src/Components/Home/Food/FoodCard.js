@@ -10,8 +10,7 @@ function FoodCard({name,price,imageUrl}){
                 <p class="mt-4 font-semibold">{price}</p>
                 <p class="text-gray-500">{name}</p>
             </NavLink>
-        
-</>
+        </>
     )
 }
 
