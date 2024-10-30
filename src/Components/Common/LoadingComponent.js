@@ -1,8 +1,8 @@
 
-function isLoadingComponent(){
+function LoadingComponent(){
     return(
         <p>Loading</p>
     )
 }
 
-export default isLoadingComponent
+export default LoadingComponent

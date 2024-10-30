@@ -1,4 +1,21 @@
+import { useEffect, useState } from "react";
+import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend";
+import ErrorComponent from "../Common/ErrorComponent";
+import LoadingComponent from "../Common/LoadingComponent";
+
 function Users(){
+  const { data, loading, error } = FetchDataComponent({
+    url: "http://localhost:3500/users",
+    method: "GET"
+  });
+  const [users,setUsers] = useState([data])
+
+  useEffect(() => {
+    setUsers(data);
+  }, [data]);
+
+  if (error) return <ErrorComponent  error={error}/>;
+  if (loading) return <LoadingComponent />;
     return(
         <section id="users" class="mb-8">
         <h2 class="text-2xl font-semibold mb-4">Users</h2>
@@ -13,16 +30,14 @@ function Users(){
               </tr>
             </thead>
             <tbody>
+            {users && users.length > 0 && users.map((user) => (
               <tr>
-                <td class="border-b p-4">john_doe</td>
-                <td class="border-b p-4">john@example.com</td>
-                <td class="border-b p-4">Active</td>
-                <td class="border-b p-4">
-                  <button class="text-blue-600 hover:underline">Edit</button>
-                  <button class="text-red-600 hover:underline">Delete</button>
-                </td>
+               <td>{user?.username}</td>
+                <td>{user?.email}</td>
+                <td>Actions here</td>
               </tr>
-            </tbody>
+            ))}
+          </tbody>
           </table>
         </div>
       </section>

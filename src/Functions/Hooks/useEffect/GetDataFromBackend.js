@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function FetchDataComponent({ url , method }) {
+function FetchDataComponent({ url , method , dataToSend=null}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,20 +13,28 @@ function FetchDataComponent({ url , method }) {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(url,{method:method});
-        if (!response.ok) {
-          throw new Error("error while importing data ");
-        }
+        const response = await fetch(url,{
+          method:method,
+          body:dataToSend,
+          credentials:"include",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
         const result = await response.json();
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
         setData(result.message);
       } catch (error) {
-        setError("oops error");
+        setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
+    
   }, [url]); 
 
 

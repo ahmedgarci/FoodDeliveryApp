@@ -11,6 +11,7 @@ import { Categories } from './Components/Admin/Categories';
 import { Users } from './Components/Admin/Users';
 import { Foods } from './Components/Admin/Foods';
 import NotFound from './Components/Common/PageNotFound';
+import { OrderPage } from './Pages/OderPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='users' element={<Users/>}/>
             <Route path='food' element={<Foods />}/>
           </Route>
+          <Route path='/order' element={<OrderPage/>}/>          
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         <Footer />
