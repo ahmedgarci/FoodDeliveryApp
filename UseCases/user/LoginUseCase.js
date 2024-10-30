@@ -21,7 +21,7 @@ const userRepository = require("../../Repositories/User/userRepository");
                 token:jwtToken
             }
             }catch(e){
-                throw e
+                throw new Error(e.message)
         }
 
     }

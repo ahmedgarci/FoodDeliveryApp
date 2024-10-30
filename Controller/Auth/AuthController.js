@@ -25,7 +25,7 @@ class AuthController{
         res.cookie("token",token)
         return res.json({"token":token})
         }catch(e){
-            return res.json({error:e.message})
+            return res.status(403).json({error:e.message})
         }
     }
 

@@ -6,7 +6,7 @@ module.exports = class FoodController{
 
     async RegisterFood(req,res){
         try{
-            // TO DO CATEGORY
+            // TO DO CATEGORY + Validation
             let {price,name,description,imageId} = req.body;
             await createNewFood({_price:price,_name:name,_description:description,
                 _imageId:imageId,

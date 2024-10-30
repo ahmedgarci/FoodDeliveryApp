@@ -26,7 +26,7 @@ module.exports = class FoodRepository{
         try{
             return await food.find({})
             .populate(["categoryName","imageId"])
-            .select(["_id","name","Price","Description","createdAt","imageUrl"])
+            .select(["_id","name","Price","description","imageUrl"])
             ;
         }catch(e){
             throw new Error(e.message)
