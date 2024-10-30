@@ -1,6 +1,7 @@
 import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend";
 import ErrorComponent from "../Common/ErrorComponent";
 import LoadingComponent from "../Common/LoadingComponent";
+import { FoodModal } from "./Modal";
 
 function Foods() {
   const { data, loading, error } = FetchDataComponent({
@@ -15,11 +16,9 @@ function Foods() {
     <section id="food" className="mb-8">
       <h2 className="text-2xl font-semibold mb-4">Food</h2>
       <div className="bg-white p-6 rounded shadow">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 mb-4 rounded"
-        >
+        <FoodModal>
           Add Food
-        </button>
+        </FoodModal>
         <table className="w-full text-left">
           <thead>
             <tr>

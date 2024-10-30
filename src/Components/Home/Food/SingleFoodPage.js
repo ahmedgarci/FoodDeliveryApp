@@ -2,15 +2,15 @@ import { useLocation } from "react-router"
 
 function SingleFoodPage(){
     const location = useLocation()
-    console.log(location);
     const {name,description,price,imageUrl}= location.state|| {}
+    
     return(
         <div class="container mx-auto p-6">
           <div class="mb-6">
             <button class="text-gray-600 hover:text-gray-900 text-lg">
             </button>
           </div>
-          
+
           <div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
             <div class="md:w-1/2">
               <img src={imageUrl} alt="Food Image" class="w-full h-full object-cover"/>

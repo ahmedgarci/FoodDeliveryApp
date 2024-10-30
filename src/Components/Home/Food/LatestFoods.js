@@ -1,14 +1,13 @@
-import { useNavigate } from "react-router"
 import FetchDataComponent from "../../../Functions/Hooks/useEffect/GetDataFromBackend"
 import ErrorComponent from "../../Common/ErrorComponent"
-import isLoadingComponent from "../../Common/LoadingComponent"
+import LoadingComponent from "../../Common/LoadingComponent"
 import { FoodCard } from "./FoodCard"
 
 function LatestFoods(){
     const {data,loading,error} = FetchDataComponent({url:"http://localhost:3500/food/all",method:"GET"})
-
+    console.log(data);
     if(error)return ErrorComponent({error:error})
-    if(loading) return isLoadingComponent
+    if(loading) return LoadingComponent
 
     return(
         <section className="container mx-auto my-12">
