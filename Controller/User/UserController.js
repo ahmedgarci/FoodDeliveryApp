@@ -13,7 +13,7 @@ module.exports  = class UserController{
     }
 
     async deleteUser(req,res){
-        let {id} = req.body
+        let {id} = req.params
         if(!id){
             return res.json({meesage:" id is not valid"})
         }

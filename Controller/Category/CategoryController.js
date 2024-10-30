@@ -26,7 +26,7 @@ module.exports = class CategoryController{
     async getAllCategories(req,res){
         try{
             const allCategories = await getAllCategories()
-            return res.json({message:"category deleted ",allCategories})
+            return res.json({message:allCategories})
         }catch(e){
             return res.json({message:e.message})
         }

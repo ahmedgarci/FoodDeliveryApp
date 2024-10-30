@@ -4,8 +4,9 @@ const app = express()
 const multer = require("multer")
 const upload = multer({dest:"/upload"})
 const cookieParser = require("cookie-parser")
+const cors = require("cors")
 
-
+app.use(cors({origin:true,credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 
@@ -24,9 +25,6 @@ app.get("/food/category",(req,res)=>foodController.getFoodByCategory(req,res))
 
 // COMMENTS ROUTES
     
-
-
-
 
 
 
@@ -52,12 +50,12 @@ const categoryController = new CategoryController()
     app.delete("/food",checkTokenValidity,authorizeAdmin,(req,res)=>foodController.deleteSpecificFood(req,res))
     app.post("/food/image/upload",checkTokenValidity,authorizeAdmin,upload.single("image"),(req,res)=>imageController.uploadImage(req,res))
     
-    app.post("/category/create",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.CreateNewCategory(req,res))
-    app.get("/category/getAll",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.getAllCategories(req,res))
-    app.delete("/category/delete",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.deleteCategory(req,res))
+    app.post("/category",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.CreateNewCategory(req,res))
+    app.get("/category",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.getAllCategories(req,res))
+    app.delete("/category",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.deleteCategory(req,res))
     
-    app.get("/users/all",checkTokenValidity,authorizeAdmin,(req,res)=>userController.getAllUsers(req,res))
-    app.delete("/users/delete/",checkTokenValidity,authorizeAdmin,(req,res)=>userController.deleteUser(req,res))
+    app.get("/users",checkTokenValidity,authorizeAdmin,(req,res)=>userController.getAllUsers(req,res))
+    app.delete("/users/:id",checkTokenValidity,authorizeAdmin,(req,res)=>userController.deleteUser(req,res))
 
 
 

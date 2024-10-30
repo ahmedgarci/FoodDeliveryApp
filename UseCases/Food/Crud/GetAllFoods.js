@@ -4,10 +4,9 @@ module.exports = async()=>{
     const redisService = new RedisService();
     const cashingKey="allFoods";
     try{
-
-        const cashedFoods = await redisService.getDataFromRedis(cashingKey)
+         const cashedFoods = await redisService.getDataFromRedis(cashingKey)
         if(cashedFoods){
-            return {cashedFoods,message:"it is from redis"}
+            return cashedFoods
         }
         var allFoods = await FoodRepository.getAllFoods();
 

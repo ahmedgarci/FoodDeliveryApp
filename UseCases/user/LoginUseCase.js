@@ -5,7 +5,7 @@ const userRepository = require("../../Repositories/User/userRepository");
     
     module.exports = async ({_email,_password})=>{
         try{
-            // TO DO VALIDATE EMAIL & PASSWORD
+             // TO DO VALIDATE EMAIL & PASSWORD
             
             let user = await userRepository.findUserByProperty({property:"email",value:_email})
             let isMatch = ComparePassword(_password,user.password);
@@ -19,7 +19,6 @@ const userRepository = require("../../Repositories/User/userRepository");
             })
             return {
                 token:jwtToken
-           //     id:user.id
             }
             }catch(e){
                 throw e
