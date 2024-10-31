@@ -6,14 +6,10 @@ function SingleFoodPage(){
     
     return(
         <div class="container mx-auto p-6">
-          <div class="mb-6">
-            <button class="text-gray-600 hover:text-gray-900 text-lg">
-            </button>
-          </div>
-
-          <div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
+          
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex h-screen">
             <div class="md:w-1/2">
-              <img src={imageUrl} alt="Food Image" class="w-full h-full object-cover"/>
+              <img src={imageUrl} alt="Food Image" class=" mx-auto  object-cover"/>
             </div>
       
             <div class="p-8 md:w-1/2">

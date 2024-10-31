@@ -1,16 +1,21 @@
 import { Button, Modal, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import CreateNewFood from "../../Functions/Admin/CreateNewFood";
+import ErrorComponent from "../Common/ErrorComponent";
+import { UploadImageComponent } from "../Common/UploadImageComponent";
 
 export function FoodModal() {
   const [openModal, setOpenModal] = useState(false);
   const [Food,setFood]= useState({name:null,description:null,price:0,category:null})
+  const [errors,setErrors] = useState([] || null)
 
 
-
-  const handleAddFood = async() => {
-    await CreateNewFood({data:Food})    
-
+  const handleAddFood = async(e) => {
+    e.preventDefault()
+    const {response,error} = await CreateNewFood({data:Food});  
+    if(error){
+      setErrors([error])
+    }
   };
 
   return (
@@ -20,11 +25,15 @@ export function FoodModal() {
         <Modal.Header>Add New Food</Modal.Header>
         <Modal.Body>
           <div className="space-y-4">
+            {errors && errors.length > 0  && <ErrorComponent error={errors} /> }
             <div>
               <Label htmlFor="foodName" value="Food Name" />
               <TextInput onChange={(e)=>setFood({...Food,name:e.target.value })} id="foodName" placeholder="Enter food name" required />
             </div>
-            <div>b
+
+            <UploadImageComponent/>
+
+            <div>
               <Label htmlFor="category" value="Category" />
               <TextInput id="category" placeholder="Enter category" required />
             </div>
@@ -42,7 +51,10 @@ export function FoodModal() {
         </Modal.Body>
         <Modal.Footer>
           <button className="text-yellow-600 font-semibold" onClick={handleAddFood}>Submit</button>
-          <Button color="gray" onClick={() => setOpenModal(false)}>
+          <Button color="gray" onClick={() => {
+            setOpenModal(false)
+            setErrors(null) 
+          }}  >
             Cancel
           </Button>
         </Modal.Footer>

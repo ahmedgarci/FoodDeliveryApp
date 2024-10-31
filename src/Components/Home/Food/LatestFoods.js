@@ -18,7 +18,7 @@ function LatestFoods(){
                 return FoodCard({
                     name: foodElement.name,
                     price: 19,
-                    imageUrl:foodElement.imageId.imageUrl,
+                    imageUrl:foodElement?.imageId?.imageUrl,
                     description:foodElement.description
                 })
             })
