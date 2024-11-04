@@ -1,3 +1,5 @@
+const LoginRequestValidation = require("../../Infrastructure/RequestsValidation/AuthRequests/LoginRequestValidation");
+const RegisterRequestValidation = require("../../Infrastructure/RequestsValidation/AuthRequests/RegisterRequestValidation");
 const ActivateAccountUseCase = require("../../UseCases/user/ActivateAccountUseCase");
 const LoginUseCase = require("../../UseCases/user/LoginUseCase");
 const RegisterUseCase = require("../../UseCases/user/RegisterUseCase");
@@ -5,12 +7,16 @@ const RegisterUseCase = require("../../UseCases/user/RegisterUseCase");
 class AuthController{
     
     static async Register(req,res){
+        const{email,phone,fullname,address,password} = req.body;
         try{
-            const{email,phone,fullname,address,password} = req.body;
-            let response= await RegisterUseCase({_fullName:fullname,_email:email,
+            RegisterRequestValidation({_address:address,
+                _email:email,_fullName:fullname,
+                _password:password,_phone:phone});
+            
+                let response= await RegisterUseCase({_fullName:fullname,_email:email,
             _address:address,_phone:phone,_password:password
+        
         });
-         //   req.user = response.email
         return res.json({"response":response})
         }catch(e){
             return res.json({message:e.message})
@@ -18,21 +24,20 @@ class AuthController{
     }
 
     static async Login(req,res){
-        try{
-            // TO DO VAALIDATE LOGIN REQUEST
         const{email,password} = req.body;
-        const {token} = await LoginUseCase({_email:email,_password:password})
-        res.cookie("token",token)
-        return res.json({"token":token})
+        try{
+            LoginRequestValidation({_email:email,_password:password})
+            const {token} = await LoginUseCase({_email:email,_password:password})
+            res.cookie("token",token)
+            return res.json({"token":token})
         }catch(e){
-            return res.status(403).json({error:e.message})
+            return res.status(401).json({error:e.message})
         }
     }
 
     static async activateAccount(req,res){
         try{
             const {code} = req.query
-            
             await ActivateAccountUseCase(code)
             return res.json({message:"account activated ! "})
         }catch(e){

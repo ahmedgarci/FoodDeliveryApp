@@ -1,25 +1,28 @@
 const { createNewFood, deleteFood } = require("../../Repositories/Food/FoodRepository");
 const FoodByCategory = require("../../UseCases/Food/FoodByCategory");
 const GetAllFoods = require("../../UseCases/Food/Crud/GetAllFoods");
+const ValidateFoodRequestcreate = require("../../Infrastructure/RequestsValidation/FoodRequests/ValidateFoodRequestcreate");
 
 module.exports = class FoodController{
 
     async RegisterFood(req,res){
+        var {price,name,description,imageId} = req.body;
         try{
-            // TO DO CATEGORY + Validation
-            let {price,name,description,imageId} = req.body;
+            ValidateFoodRequestcreate({_name:name,_price:price,_description:description,_imageFile:imageId});
             await createNewFood({_price:price,_name:name,_description:description,
                 _imageId:imageId,
                 _categoryId:"67143fbbbbdd573cdca103e4"});  
             return res.json({message:"new food was created :"+name});
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(403).json({error:e.message})
         }
     }
 
+
     async deleteSpecificFood(req,res){
+        let {id} = req.query;
         try{
-            let {id} = req.query;
+            if(!id){throw new Error("id is not valid")}
             await deleteFood(id);
             return res.json({message:"deleted successfully ! "});
         }catch(e){
@@ -41,8 +44,8 @@ module.exports = class FoodController{
 
     // TO FIX
      async getFoodByCategory(req,res){
+        let {idCategory} = req.query;
         try{
-            let {idCategory} = req.query;
             return res.json({message:await FoodByCategory(idCategory)});
         }catch(e){
             return res.json({message:e.message})
