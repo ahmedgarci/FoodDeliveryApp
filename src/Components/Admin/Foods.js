@@ -9,7 +9,7 @@ function Foods() {
     method: "GET"
   });
   console.log(data);
-  if (error) return <ErrorComponent />;
+  if (error) return <ErrorComponent error={error} />;
   if (loading) return <LoadingComponent />;
 
   return (

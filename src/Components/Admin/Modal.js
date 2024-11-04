@@ -6,9 +6,12 @@ import { UploadImageComponent } from "../Common/UploadImageComponent";
 
 export function FoodModal() {
   const [openModal, setOpenModal] = useState(false);
-  const [Food,setFood]= useState({name:null,description:null,price:0,category:null})
+  const [Food,setFood]= useState({name:null,description:null,price:0,category:null,imageId:null})
   const [errors,setErrors] = useState([] || null)
 
+  const HandleOnUploadComplete = (id)=>{
+    setFood({...Food,imageId:id})
+  }
 
   const handleAddFood = async(e) => {
     e.preventDefault()
@@ -31,7 +34,7 @@ export function FoodModal() {
               <TextInput onChange={(e)=>setFood({...Food,name:e.target.value })} id="foodName" placeholder="Enter food name" required />
             </div>
 
-            <UploadImageComponent/>
+            <UploadImageComponent onUploadComplete={HandleOnUploadComplete}/>
 
             <div>
               <Label htmlFor="category" value="Category" />

@@ -5,7 +5,6 @@ import { FoodCard } from "./FoodCard"
 
 function LatestFoods(){
     const {data,loading,error} = FetchDataComponent({url:"http://localhost:3500/food/all",method:"GET"})
-    console.log(data);
     if(error)return ErrorComponent({error:error})
     if(loading) return LoadingComponent
 
