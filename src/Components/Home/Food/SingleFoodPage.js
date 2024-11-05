@@ -1,6 +1,10 @@
+import { useContext } from "react"
 import { useLocation } from "react-router"
+import { cartContext } from "../../../Functions/Hooks/useContext/CartContext"
 
 function SingleFoodPage(){
+    const { addFoodToCart} = useContext(cartContext)
+
     const location = useLocation()
     const {name,description,price,imageUrl}= location.state|| {}
     
@@ -24,7 +28,9 @@ function SingleFoodPage(){
                 <label for="quantity" class="block text-gray-700 font-medium">Quantity</label>
                 <div class="flex items-center space-x-4 mt-2">
                   <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="w-20 p-2 border rounded-md text-center"/>
-                  <button class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-green-700 font-semibold">
+                  <button
+                  onClick={()=>addFoodToCart(12)}
+                  class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-green-700 font-semibold">
                     Add to Cart
                   </button>
                 </div>

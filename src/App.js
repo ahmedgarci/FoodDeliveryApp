@@ -12,10 +12,14 @@ import { Users } from './Components/Admin/Users';
 import { Foods } from './Components/Admin/Foods';
 import NotFound from './Components/Common/PageNotFound';
 import { OrderPage } from './Pages/OderPage';
+import { CartContextProvider } from './Functions/Hooks/useContext/CartContext';
+
+
 
 function App() {
   return (
       <Router>
+                  <CartContextProvider>
            <NavigationBar/>
         <Routes>
           <Route path='/' Component={HomePage}/>
@@ -31,6 +35,8 @@ function App() {
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         <Footer />
+        </CartContextProvider>
+
       </Router>
   );
 }

@@ -1,5 +1,9 @@
+import { useContext } from "react"
+import { cartContext } from "../Functions/Hooks/useContext/CartContext"
 
 function OrderPage(){
+    const {foodsInCart} = useContext(cartContext)
+    console.log(foodsInCart);
     return(
         <div class="container mx-auto mt-10 h-screen">
         <div class="flex flex-col md:flex-row md:space-x-8">
