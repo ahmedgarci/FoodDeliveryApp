@@ -4,10 +4,10 @@ module.exports = class OrderController{
 
     async MakeOrder(req,res){
         try{
-            const {foodIds} = req.query;
-            if(!foodIds){throw new Error("invalid food Id !")}
+            const {CartId} = req.Params;
+            if(!CartId){throw new Error("invalid food Id !")}
             
-            await PlaceOrder(foodIds,req.user.data.id);
+            await PlaceOrder(CartId,req.user.data.id);
 
             return res.json("order placed !")
         }catch(e){

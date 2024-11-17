@@ -2,14 +2,14 @@ const order = require("../../Entities/OrderEntity")
 
 module.exports = class OrderRepository{
 
-    static async PlaceOrder({userId,foodIds,price}){
+    static async PlaceOrder({userId,CartId,price}){
         try{
-            const food = await order.create({
+            const order = await order.create({
                 price:price,
-                foods:foodIds,
+                cart:CartId,
                 user:userId
             });
-            await food.save();
+            await order.save();
         }catch(e){
             throw new Error(e.message);
         }

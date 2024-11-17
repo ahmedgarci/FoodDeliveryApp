@@ -33,7 +33,7 @@ app.get("/food/category",(req,res)=>foodController.getFoodByCategory(req,res))
 const OrdersController = require("./Controller/Order/OrdersController");
 const checkTokenValidity = require("./Infrastructure/Middelwares/checkTokenValidity")
 const ordersController = new OrdersController();
-app.post("/Order/place",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
+app.post("/Order/place/:CartId",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
 
 
 

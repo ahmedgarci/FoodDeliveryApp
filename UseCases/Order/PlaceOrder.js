@@ -1,11 +1,10 @@
-const FoodRepository = require("../../Repositories/Food/FoodRepository")
 const OrderRepository = require("../../Repositories/Order/OrderRepository")
 
-module.exports = async(foodId,userId)=>{
+module.exports = async(CartId,userId)=>{
 
     try{
         
-        OrderRepository.PlaceOrder({userId:userId,foodIds:foodId,price:90})
+        OrderRepository.PlaceOrder({userId:userId,CartId:CartId,price:90})
     }catch(e){
         throw e
     }
