@@ -3,7 +3,8 @@ const mongo = require('mongoose')
 const {Schema} = mongo
 
 const commentSchema = new Schema({
-    name: { type: String,required:true},
+    user:{type:mongo.Types.ObjectId,ref:"User",required:true},
+    commentaire: { type: String,required:true},
 
 },{timestamps:true}) 
 
