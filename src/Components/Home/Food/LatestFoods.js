@@ -5,7 +5,7 @@ import { FoodCard } from "./FoodCard"
 
 function LatestFoods(){
     const {data,loading,error} = FetchDataComponent({url:"http://localhost:3500/food/all",method:"GET"})
-    if(error)return ErrorComponent({error:error})
+    if(error)return ErrorComponent({error:error || "foods are not avaliable  "})
     if(loading) return LoadingComponent
 
     return(
@@ -15,6 +15,7 @@ function LatestFoods(){
             {data && data.length > 0 &&
             data.map(foodElement =>{
                 return FoodCard({
+                    id:foodElement._id,
                     name: foodElement.name,
                     price: 19,
                     imageUrl:foodElement?.imageId?.imageUrl,

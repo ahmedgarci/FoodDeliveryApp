@@ -6,7 +6,7 @@ function SingleFoodPage(){
     const { addFoodToCart} = useContext(cartContext)
 
     const location = useLocation()
-    const {name,description,price,imageUrl}= location.state|| {}
+    const {id,name,description,price,imageUrl}= location.state|| {}
     
     return(
         <div class="container mx-auto p-6">
@@ -29,7 +29,7 @@ function SingleFoodPage(){
                 <div class="flex items-center space-x-4 mt-2">
                   <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="w-20 p-2 border rounded-md text-center"/>
                   <button
-                  onClick={()=>addFoodToCart(12)}
+                  onClick={()=>addFoodToCart(id,imageUrl,price,name)}
                   class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-green-700 font-semibold">
                     Add to Cart
                   </button>
