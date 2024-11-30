@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend";
 import ErrorComponent from "../Common/ErrorComponent";
 import LoadingComponent from "../Common/LoadingComponent";
+import { DeleteComponent } from "./Delete";
 
 function Users(){
   const { data, loading, error } = FetchDataComponent({
@@ -34,7 +35,7 @@ function Users(){
               <tr>
                <td>{user?.username}</td>
                 <td>{user?.email}</td>
-                <td>Actions here</td>
+                <td><DeleteComponent/></td>
               </tr>
             ))}
           </tbody>

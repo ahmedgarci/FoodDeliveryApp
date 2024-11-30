@@ -1,4 +1,4 @@
-import { OrderStages } from "../Components/Home/OrderStages"
+import { OrderStages } from "../Components/Order/OrderStages"
 import { LatestFoods } from "../Components/Home/Food/LatestFoods"
 import ServicesOffered from "../Components/Common/Service"
 

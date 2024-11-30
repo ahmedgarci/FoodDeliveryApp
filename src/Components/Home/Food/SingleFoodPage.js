@@ -7,7 +7,7 @@ function SingleFoodPage(){
 
     const location = useLocation()
     const {id,name,description,price,imageUrl}= location.state|| {}
-    
+
     return(
         <div class="container mx-auto p-6">
           

@@ -9,7 +9,6 @@ function CartContextProvider({children}){
 
     function addFoodToCart(id,image,price,name){
         const isFound = foodsInCart.find(food=>food.id === id)
-        console.log(isFound);
         if(!isFound){
             setFoodsInCart([...foodsInCart,{id,quantity:1,image:image,price:price,name:name}])
         }else{
@@ -25,11 +24,21 @@ function CartContextProvider({children}){
         setFoodsInCart([filteredFoods])
     }
 
+
+    function calculateSum(){
+        let sum = 0;
+        foodsInCart.map(food=>sum+=food.price)
+        return sum;
+    }
+
+
+
     const ExportedFunction = {
         itemsNumber,
         foodsInCart,
         deleteFood,
-        addFoodToCart
+        addFoodToCart,
+        calculateSum
     }
 
 
