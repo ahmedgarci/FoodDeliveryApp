@@ -43,6 +43,7 @@ function Foods() {
           </div>
         </Toast>
       )}
+      
       <h2 className="text-2xl font-semibold mb-4">Food</h2>
       <div className="bg-white p-6 rounded shadow">
         <FoodModal>Add Food</FoodModal>
@@ -77,7 +78,7 @@ function Foods() {
 
       
     </section>
-  );
+  )
 }
 
 export { Foods };
