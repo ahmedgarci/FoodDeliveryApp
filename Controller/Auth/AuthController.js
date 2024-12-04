@@ -8,6 +8,9 @@ class AuthController{
     
     static async Register(req,res){
         const{email,phone,fullname,address,password} = req.body;
+
+        console.log(req.body);
+        
         try{
             RegisterRequestValidation({_address:address,
                 _email:email,_fullName:fullname,
@@ -19,7 +22,7 @@ class AuthController{
         });
         return res.json({"response":response})
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(401).json({error:e.message})
         }
     }
 
@@ -31,6 +34,7 @@ class AuthController{
             res.cookie("token",token)
             return res.json({"token":token})
         }catch(e){
+            console.log(e.message);
             return res.status(401).json({error:e.message})
         }
     }
