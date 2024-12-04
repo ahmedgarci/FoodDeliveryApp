@@ -3,11 +3,9 @@ import axios from "axios";
 async function PostData({url,data}){
     try {
         const response = await axios.post(url, data, { withCredentials: true });
-        console.log("response");
         return { response }; 
     } catch (e) {
-        console.log(e);
-        return { error: e.response?.data?.error || "oops error has occured" };
+        return { error: e.response?.data?.error };
     }
 
 }
