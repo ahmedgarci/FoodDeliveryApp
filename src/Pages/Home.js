@@ -1,6 +1,7 @@
 import { OrderStages } from "../Components/Order/OrderStages"
 import { LatestFoods } from "../Components/Home/Food/LatestFoods"
 import ServicesOffered from "../Components/Common/Service"
+import Footer from "../Components/Home/Food/footer"
 
 function HomePage (){
     
@@ -36,7 +37,7 @@ function HomePage (){
   </section>
 
   <ServicesOffered/>
-
+<Footer/>
    
       </div>
 
