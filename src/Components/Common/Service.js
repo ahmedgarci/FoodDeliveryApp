@@ -30,7 +30,7 @@ function ServicesOffered() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % services.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
