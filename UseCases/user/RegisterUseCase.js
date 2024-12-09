@@ -5,12 +5,6 @@ const userRepository = require("../../Repositories/User/userRepository");
    
     module.exports = async({_fullName,_email,_phone,_password,_address})=>{
         try{
-            await RegisterRequestValidation({fullName:_fullName,
-                email:_email,
-                phone:_phone,
-                password:_password,
-                address:_address})
-
                 let savedUser = await userRepository.createNewUser({email:_email,
                 fullName:_fullName,
                 phone:_phone,

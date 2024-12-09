@@ -1,8 +1,6 @@
 
 module.exports = ({_fullName,_email,_phone,_password,_address})=>{
-    if(!_fullName || _fullName.trim().length === 0 ){
-        throw new Error("fullname is required")
-    }
+ 
     // TO DO VERIFICATION @ .
     if(!_email || _email.trim().length ===0   ){
         throw new Error("email is required")

@@ -14,12 +14,13 @@ module.exports = class CategoryController{
     }
 
     async deleteCategory(req,res){
-        let {idCategory} = req.body
+        let {idCategory} = req.params
+        console.log(idCategory);
         try{
             await deleteCategory(idCategory)
             return res.json({message:"category deleted "})
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(403).json({error:e.message})
         }
     }
 

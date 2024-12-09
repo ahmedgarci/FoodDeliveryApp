@@ -4,26 +4,19 @@ const Cart = require("../../Entities/CartEntity")
 module.exports = class CartRepository{
 
 
-    async createNewCart(){
-        try{
-            const cart = await Cart.create();
-            await category.save()
-            return cart
-        }catch(e){
-            throw e.message
-        }
-    }
 
     static async AddItemToCart({CartId,FoodId}){
         try{
-            const cart = await Cart.findById(CartId).populate("food");
+            var cart = await Cart.findById(CartId);
             if(!cart){
-                cart = await createNewCart() 
+                 cart = await Cart.create({products:[],TotalPrice:0});
+                await cart.save()
             }
             cart.products.push(FoodId)
             await cart.save()
-           // cart.TotalPrice = cart.products.map(item => item. )
-            return CartId
+//            cart.TotalPrice = cart.products.map((totale,item) => totale+item.Price )
+//            await cart.save()
+            return cart._id
         }catch(e){
             throw e.message
         }

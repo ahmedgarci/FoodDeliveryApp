@@ -54,6 +54,7 @@ class UserRepository {
         }
     }
     static async deleteUser(id){
+        console.log(id);
         try{
             return await User.findByIdAndDelete(id).orFail(()=>new Error("error while deleting user"))
         }catch(e){

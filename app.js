@@ -34,6 +34,10 @@ const OrdersController = require("./Controller/Order/OrdersController");
 const checkTokenValidity = require("./Infrastructure/Middelwares/checkTokenValidity")
 const ordersController = new OrdersController();
 app.post("/Order/place/:CartId",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
+app.post("/Cart/add",checkTokenValidity,(req,res)=>ordersController.addItem(req,res))
+
+
+
 
 
 
@@ -47,12 +51,12 @@ const userController = new UserController();
 const categoryController = new CategoryController()
 
     app.post("/food",checkTokenValidity,authorizeAdmin,(req,res)=>foodController.RegisterFood(req,res));
-    app.delete("/food",checkTokenValidity,authorizeAdmin,(req,res)=>foodController.deleteSpecificFood(req,res))
+    app.delete("/food/:id",checkTokenValidity,authorizeAdmin,(req,res)=>foodController.deleteSpecificFood(req,res))
     app.post("/food/image/upload",checkTokenValidity,authorizeAdmin,upload.single("image"),(req,res)=>imageController.uploadImage(req,res))
     
     app.post("/category",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.CreateNewCategory(req,res))
     app.get("/category",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.getAllCategories(req,res))
-    app.delete("/category",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.deleteCategory(req,res))
+    app.delete("/category/:idCategory",checkTokenValidity,authorizeAdmin,(req,res)=>categoryController.deleteCategory(req,res))
     
     app.get("/users",checkTokenValidity,authorizeAdmin,(req,res)=>userController.getAllUsers(req,res))
     app.delete("/users/:id",checkTokenValidity,authorizeAdmin,(req,res)=>userController.deleteUser(req,res))

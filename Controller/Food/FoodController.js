@@ -20,13 +20,13 @@ module.exports = class FoodController{
 
 
     async deleteSpecificFood(req,res){
-        let {id} = req.query;
+        let {id} = req.params;
         try{
             if(!id){throw new Error("id is not valid")}
             await deleteFood(id);
             return res.json({message:"deleted successfully ! "});
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(403).json({error:e.message})
         }
     }
 

@@ -4,7 +4,7 @@ const {Schema} = mongo
 
 const foodSchema = new Schema({
     name: { type: String,required:true},
-    Price:{type:mongo.Types.Decimal128,required:true},
+    Price:{type:Number,required:true},
     description:{type:String,required:true},
     imageId:{type:mongo.Types.ObjectId,ref:"image"},
     categoryName:{type:mongo.Types.ObjectId,ref:"category"},

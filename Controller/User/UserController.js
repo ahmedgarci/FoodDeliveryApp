@@ -15,13 +15,14 @@ module.exports  = class UserController{
     async deleteUser(req,res){
         let {id} = req.params
         if(!id){
-            return res.json({meesage:" id is not valid"})
+            return res.status(403).json({error:" id is not valid"})
         }
         try{
             await deleteUserUseCase(id)
             return res.json({message:"user deleted "})
         }catch(e){
-            return res.json({message:e.message})
+            console.log(e);
+            return res.status(403).json({error:e.message})
         }
     }
 
