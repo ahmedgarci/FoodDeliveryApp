@@ -14,6 +14,7 @@ export function FoodModal() {
   }
 
   const handleAddFood = async(e) => {
+    console.log(Food);
     e.preventDefault()
     const {response,error} = await CreateNewFood({data:Food});  
     if(error){

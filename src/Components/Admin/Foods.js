@@ -66,9 +66,9 @@ function Foods() {
                   <td>{food?.price}</td>
                   <td>
                     <DeleteComponent
-                      FoodId={food._id}
-                      handleToast={handleToast}
-                    />
+                      Id={food._id}
+                      Url={"http://localhost:3500/food/"}
+/>
                   </td>
                 </tr>
               ))}

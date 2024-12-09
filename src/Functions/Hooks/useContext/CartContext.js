@@ -1,4 +1,5 @@
 import { createContext, useState} from "react";
+import { PostData } from "../../Common/PostDataToBackend";
 
 
 const cartContext = createContext()
@@ -7,7 +8,8 @@ function CartContextProvider({children}){
     const [foodsInCart,setFoodsInCart] = useState([])
     const [itemsNumber,setItemsNumer] = useState(0)
 
-    function addFoodToCart(id,image,price,name){
+    async function addFoodToCart(id,image,price,name){
+        console.log(id);
         const isFound = foodsInCart.find(food=>food.id === id)
         if(!isFound){
             setFoodsInCart([...foodsInCart,{id,quantity:1,image:image,price:price,name:name}])
@@ -15,6 +17,12 @@ function CartContextProvider({children}){
             setFoodsInCart(foodsInCart.map(food=>{
                 return food.id === id ? {...food,quantity:food.quantity+1} : food
             }))
+        }
+        try{            
+            const CartId = await PostData({url:"http://localhost:3500/Cart/add/",data:{FoodId:id}})
+            console.log(CartId);
+        }catch(e){
+            alert("can t add item to your cart ")
         }
         setItemsNumer(foodsInCart.length)
     }

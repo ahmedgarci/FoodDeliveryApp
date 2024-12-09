@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend"
-import ErrorComponent from "../Common/ErrorComponent";
-import LoadingComponent from "../Common/LoadingComponent";
+import FetchDataComponent from "../../../Functions/Hooks/useEffect/GetDataFromBackend"
+import ErrorComponent from "../../Common/ErrorComponent";
+import LoadingComponent from "../../Common/LoadingComponent";
+import { DeleteComponent } from "../Delete";
 
 function Categories(){
 
@@ -32,7 +33,11 @@ function Categories(){
               categories.map((category) => (
                 <tr key={category._id}>
                   <td className="border-b p-4">{category.name}</td>
-                  <td className="border-b p-4">Actions here</td>
+                  <td className="border-b p-4"><DeleteComponent 
+                  Url={"http://localhost:3500/category/"}
+                  Id={category._id}
+                  
+                  /> </td>
                 </tr>
               )))
               } 

@@ -3,17 +3,16 @@ import { DeleteDataFromBackend } from "../../Functions/Common/DeleteDataFromBack
 import { Toast } from "flowbite-react";
 import { HiCheck, HiExclamation, HiX } from "react-icons/hi";
 
-function DeleteComponent({ FoodId, handleToast }) {
+function DeleteComponent({ Id , Url}) {
+
   const handleDelete = async () => {
     try {
-      // Appeler la fonction de suppression
       await DeleteDataFromBackend({
-        url: "http://localhost:3500/food/",
-        data: FoodId,
-        handleToast, // Passer handleToast pour afficher le toast après suppression
+        url: Url,
+        data: Id
       });
     } catch (error) {
-      handleToast("Failed to delete the food item.", "error");
+      alert("error has occured")
     }
   };
 

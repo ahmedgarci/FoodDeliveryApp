@@ -35,7 +35,11 @@ function Users(){
               <tr>
                <td>{user?.username}</td>
                 <td>{user?.email}</td>
-                <td><DeleteComponent/></td>
+                
+                <td><DeleteComponent
+                  Id={user._id}
+                  Url={"http://localhost:3500/users/"}
+/></td>
               </tr>
             ))}
           </tbody>
