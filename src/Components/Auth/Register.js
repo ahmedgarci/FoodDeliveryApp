@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Register } from "../../Functions/Auth/Register"
-import ErrorComponent from "../Common/ErrorComponent";
+import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
 
 function RegisterForm(){
 

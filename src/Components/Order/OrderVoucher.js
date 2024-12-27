@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { cartContext } from "../../Functions/Hooks/useContext/CartContext"
 import { ConfirmOrder } from "../../Functions/PlaceOrder/PlaceOrder"
 
@@ -6,10 +6,14 @@ import { ConfirmOrder } from "../../Functions/PlaceOrder/PlaceOrder"
 function Voucher(){
     
     const {calculateSum,cartId} = useContext(cartContext)
+
     async function HandleOrderConfirmation(){
-       ConfirmOrder({CartId:cartId})
-       .then(c=>console.log(c))
-       .catch(e=>console.log(e))
+      const {error,response} = await ConfirmOrder({CartId:cartId})
+      if(error){
+        alert(error)
+      }else{
+        console.log(response);
+      }
     }
     
     return(

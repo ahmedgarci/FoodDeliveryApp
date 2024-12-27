@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from './Pages/Home';
 import { Authenticate } from './Pages/Auth';
-import {NavigationBar} from "./Components/Common/NavigationBar"
-import { SingleFoodPage } from './Components/Home/Food/SingleFoodPage';
+import {NavigationBar} from "./Components/Common/Header + Footer/NavigationBar"
+import { SingleFoodPage } from './Pages/SingleFoodPage';
 import { Admin } from './Pages/Admin';
 import { Statistique } from './Components/Admin/Statistiques';
 import { Categories } from './Components/Admin/Category/Categories';
@@ -12,7 +12,7 @@ import { Foods } from './Components/Admin/Foods';
 import NotFound from './Components/Common/PageNotFound';
 import { OrderPage } from './Pages/OderPage';
 import { CartContextProvider } from './Functions/Hooks/useContext/CartContext';
-import Footer from './Components/Common/footer';
+import Footer from './Components/Common/Header + Footer/footer';
 import { UserContextProvider } from './Functions/Hooks/useContext/UserContext';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path='/' Component={HomePage}/>
           <Route path='/auth' Component={Authenticate}/>
-          <Route path='/food' Component={SingleFoodPage}/>
+          <Route path='/food/:id' Component={SingleFoodPage}/>
           <Route path='/admin' Component={Admin}>
             <Route path='stat' element={<Statistique/>}  />
             <Route path='categories'element={<Categories/>} />

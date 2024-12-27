@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Login } from "../../Functions/Auth/Login";
-import ErrorComponent from "../Common/ErrorComponent";
+import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
 import { userContext } from "../../Functions/Hooks/useContext/UserContext";
 
 function LoginForm(){

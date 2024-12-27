@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { cartContext } from "../../Functions/Hooks/useContext/CartContext";
-import { userContext } from "../../Functions/Hooks/useContext/UserContext";
+import { cartContext } from "../../../Functions/Hooks/useContext/CartContext";
+import { userContext } from "../../../Functions/Hooks/useContext/UserContext";
 
 function NavigationBar(){
     const {itemsNumber}=useContext(cartContext)

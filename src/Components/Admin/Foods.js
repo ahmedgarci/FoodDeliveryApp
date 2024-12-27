@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend";
-import ErrorComponent from "../Common/ErrorComponent";
-import LoadingComponent from "../Common/LoadingComponent";
+import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
+import LoadingComponent from "../Common/Loading + Error/LoadingComponent";
 import { DeleteComponent } from "./Delete";
 import { FoodModal } from "./Modal";
 

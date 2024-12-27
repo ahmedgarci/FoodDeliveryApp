@@ -1,7 +1,7 @@
 import { Button, Modal, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import CreateNewFood from "../../Functions/Admin/CreateNewFood";
-import ErrorComponent from "../Common/ErrorComponent";
+import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
 import { UploadImageComponent } from "../Common/UploadImageComponent";
 
 export function FoodModal() {

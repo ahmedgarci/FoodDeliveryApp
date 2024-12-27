@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PostData } from "../../Functions/Common/PostDataToBackend";
-import ErrorComponent from "./ErrorComponent";
-import LoadingComponent from "./LoadingComponent";
+import ErrorComponent from "./Loading + Error/ErrorComponent";
+import LoadingComponent from "./Loading + Error/LoadingComponent";
 
 function UploadImageComponent({onUploadComplete}) {
     const [isLoading, setLoading] = useState(false);
