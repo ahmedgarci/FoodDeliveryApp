@@ -3,7 +3,7 @@ import { useLocation } from "react-router"
 import { cartContext } from "../../../Functions/Hooks/useContext/CartContext"
 
 function SingleFoodPage(){
-    const { addFoodToCart} = useContext(cartContext)
+    const { addFoodToCart,checkIfFoodAlreadyInCart } = useContext(cartContext)
 
     const location = useLocation()
     const {id,name,description,price,imageUrl}= location.state|| {}
@@ -21,18 +21,25 @@ function SingleFoodPage(){
               <p class="mt-4 text-gray-600">{description}</p>
               
               <div class="mt-6 text-2xl font-bold text-red-600">
-                {price}
+                Price : ${price}
               </div>
       
               <div class="mt-6">
-                <label for="quantity" class="block text-gray-700 font-medium">Quantity</label>
                 <div class="flex items-center space-x-4 mt-2">
-                  <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="w-20 p-2 border rounded-md text-center"/>
-                  <button
-                  onClick={()=>addFoodToCart(id,imageUrl,price,name)}
-                  class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-green-700 font-semibold">
-                    Add to Cart
-                  </button>
+                  {checkIfFoodAlreadyInCart(id) ?
+                    <h1>deja existe dans votre panier</h1>
+                    :
+                    <button
+                    onClick={()=>addFoodToCart(id,imageUrl,price,name)}
+                    class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-green-700 font-semibold">
+                      Add to Cart
+                    </button>
+                  }
+               
+
+
+
+
                 </div>
               </div>
       

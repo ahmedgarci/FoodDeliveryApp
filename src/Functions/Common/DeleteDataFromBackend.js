@@ -4,6 +4,7 @@ import { HiCheck, HiExclamation, HiX } from "react-icons/hi";
 
 async function DeleteDataFromBackend({ url, data, handleToast }) {
   try {
+    console.log(data);
     const response = await axios.delete(`${url}${data}`, {
       withCredentials: true,
     });

@@ -7,20 +7,17 @@ function CartContextProvider({children}){
 
     const [foodsInCart,setFoodsInCart] = useState([])
     const [itemsNumber,setItemsNumer] = useState(0)
+    const [cartId,setCartId] = useState("67570bb0da1b343b39cbfc3b")
 
     async function addFoodToCart(id,image,price,name){
-        console.log(id);
         const isFound = foodsInCart.find(food=>food.id === id)
         if(!isFound){
             setFoodsInCart([...foodsInCart,{id,quantity:1,image:image,price:price,name:name}])
-        }else{
-            setFoodsInCart(foodsInCart.map(food=>{
-                return food.id === id ? {...food,quantity:food.quantity+1} : food
-            }))
         }
         try{            
-            const CartId = await PostData({url:"http://localhost:3500/Cart/add/",data:{FoodId:id}})
-            console.log(CartId);
+            const {error,response} = await PostData({url:`http://localhost:3500/Cart/add/${cartId}`,data:{FoodId:id}})
+          //  console.log(response.data);
+            error? console.log(error) : setCartId(response.data)           
         }catch(e){
             alert("can t add item to your cart ")
         }
@@ -30,6 +27,11 @@ function CartContextProvider({children}){
     function deleteFood(id){
         const filteredFoods = foodsInCart.filter(food=> food.id !== id)
         setFoodsInCart([filteredFoods])
+    }
+
+    function checkIfFoodAlreadyInCart(id){
+        let Exist =  foodsInCart.find(item => item.id === id)
+        return Exist ? true : false
     }
 
 
@@ -42,11 +44,13 @@ function CartContextProvider({children}){
 
 
     const ExportedFunction = {
+        cartId,
         itemsNumber,
         foodsInCart,
         deleteFood,
         addFoodToCart,
-        calculateSum
+        calculateSum,
+        checkIfFoodAlreadyInCart
     }
 
 

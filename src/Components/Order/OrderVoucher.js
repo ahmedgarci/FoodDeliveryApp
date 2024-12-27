@@ -1,9 +1,17 @@
 import { useContext } from "react"
 import { cartContext } from "../../Functions/Hooks/useContext/CartContext"
+import { ConfirmOrder } from "../../Functions/PlaceOrder/PlaceOrder"
 
 
 function Voucher(){
-    const {calculateSum} = useContext(cartContext)
+    
+    const {calculateSum,cartId} = useContext(cartContext)
+    async function HandleOrderConfirmation(){
+       ConfirmOrder({CartId:cartId})
+       .then(c=>console.log(c))
+       .catch(e=>console.log(e))
+    }
+    
     return(
         <div className="w-full md:w-1/4 bg-white p-6 shadow-md rounded-lg">
         <h2 className="text-xl font-semibold mb-4 text-gray-700">Récapitulatif de la commande</h2>
@@ -19,7 +27,9 @@ function Voucher(){
           <span className="text-lg font-semibold text-gray-800">Total</span>
           <span className="text-lg font-semibold text-gray-800">{calculateSum()}</span>
         </div>
-        <button className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button 
+        onClick={()=>HandleOrderConfirmation()}
+        className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
           Passer la commande
         </button>
       </div>

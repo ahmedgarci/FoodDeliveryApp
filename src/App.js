@@ -13,13 +13,14 @@ import NotFound from './Components/Common/PageNotFound';
 import { OrderPage } from './Pages/OderPage';
 import { CartContextProvider } from './Functions/Hooks/useContext/CartContext';
 import Footer from './Components/Common/footer';
-
+import { UserContextProvider } from './Functions/Hooks/useContext/UserContext';
 
 function App() {
   return (
       <Router>
                   <CartContextProvider>
-           <NavigationBar/>
+                    <UserContextProvider>
+                      <NavigationBar />
         <Routes>
           <Route path='/' Component={HomePage}/>
           <Route path='/auth' Component={Authenticate}/>
@@ -34,7 +35,7 @@ function App() {
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         <Footer/>
-
+        </UserContextProvider>
         </CartContextProvider>
 
       </Router>

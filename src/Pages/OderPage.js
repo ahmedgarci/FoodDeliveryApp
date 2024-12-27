@@ -18,7 +18,7 @@ function OrderPage() {
           <p className="text-gray-600">Description courte du plat</p>
           <div className="flex justify-between mt-2">
             <div className="flex items-center space-x-2">
-              <label htmlFor={`quantity-${index}`} className="text-gray-700">Quantité: 1</label>
+              <label htmlFor={`quantity-${index}`} className="text-gray-700">Quantité: {food.quantity}</label>
             </div>
             <p className="text-gray-800 font-semibold">Prix: {food.price}$</p>
           </div>

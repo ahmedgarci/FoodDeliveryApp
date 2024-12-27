@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { Login } from "../../Functions/Auth/Login";
 import ErrorComponent from "../Common/ErrorComponent";
+import { userContext } from "../../Functions/Hooks/useContext/UserContext";
 
 function LoginForm(){
     const [user, setUser] = useState({ email: null, password: null });
     const [errors, setErrors] = useState([]);
-    const [activeForm, setActiveForm] = useState("login"); 
-  
+    const {setUserInfo} = useContext(userContext)
+
     async function handleLogin(e) {
       e.preventDefault();
       const { response, error } = await Login({ email: user.email, password: user.password });
       if (error) {
         setErrors([error]);
+        return
       }
+      setUserInfo(user.email)
+
     }
 
     return(

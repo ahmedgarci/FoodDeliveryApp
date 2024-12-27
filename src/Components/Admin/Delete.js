@@ -1,7 +1,5 @@
 import React from "react";
 import { DeleteDataFromBackend } from "../../Functions/Common/DeleteDataFromBackend";
-import { Toast } from "flowbite-react";
-import { HiCheck, HiExclamation, HiX } from "react-icons/hi";
 
 function DeleteComponent({ Id , Url}) {
 
