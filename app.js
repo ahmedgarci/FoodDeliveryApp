@@ -22,6 +22,8 @@ const FoodController = require("./Controller/Food/FoodController")
 const foodController = new FoodController();
 app.get("/food/all",(req,res)=>foodController.getAllFoods(req,res))
 app.get("/food/category",(req,res)=>foodController.getFoodByCategory(req,res))
+app.get("/food/:FoodId",(req,res)=>foodController.getFoodById(req,res))
+
 
 // COMMENTS ROUTES
     
@@ -30,11 +32,12 @@ app.get("/food/category",(req,res)=>foodController.getFoodByCategory(req,res))
 
 
 // ORDER FEATURE
+
 const OrdersController = require("./Controller/Order/OrdersController");
 const checkTokenValidity = require("./Infrastructure/Middelwares/checkTokenValidity")
 const ordersController = new OrdersController();
-app.post("/Order/place/:CartId",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
-app.post("/Cart/add",checkTokenValidity,(req,res)=>ordersController.addItem(req,res))
+app.post("/Order/place",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
+app.post("/Cart/add/:CartId",checkTokenValidity,(req,res)=>ordersController.addItem(req,res))
 
 
 

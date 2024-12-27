@@ -7,11 +7,7 @@ module.exports = class CartRepository{
 
     static async AddItemToCart({CartId,FoodId}){
         try{
-            var cart = await Cart.findById(CartId);
-            if(!cart){
-                 cart = await Cart.create({products:[],TotalPrice:0});
-                await cart.save()
-            }
+            var cart = await Cart.findById(CartId).or((await Cart.create({products:[],TotalPrice:0})).save());
             cart.products.push(FoodId)
             await cart.save()
 //            cart.TotalPrice = cart.products.map((totale,item) => totale+item.Price )
@@ -21,6 +17,8 @@ module.exports = class CartRepository{
             throw e.message
         }
     }
+// cd C:\Program Files\MongoDB\Server\6.0\bin
+
 
     static async deleteItemFromCart({CartId,FoodId}){
         try{

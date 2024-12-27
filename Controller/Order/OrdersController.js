@@ -5,14 +5,18 @@ module.exports = class OrderController{
 
     async MakeOrder(req,res){
         try{
-            const {CartId} = req.Params;
-            if(!CartId){throw new Error("invalid food Id !")}
+            const {CartId} = req.body
+            if(CartId){
+               return res.status(400).json({error:"invalid cart id"})
+            }
             
-            await PlaceOrder(CartId,req.user.data.id);
+            await PlaceOrder(CartId,req.user.id);
 
             return res.json("order placed !")
+
         }catch(e){
-            return res.json(e.message)
+            console.log(e);
+            return res.status(500).json(e.message)
         }
     }
 
@@ -20,10 +24,10 @@ module.exports = class OrderController{
         try{
             const {CartId} = req.params;
             const {FoodId}=req.body
-            
             const id = await AddItemToCart({CartId:CartId,FoodId:FoodId})
             return res.json(id)
         }catch(e){
+            console.log(e);
             return res.status(403).json({error:e})
         }
     }

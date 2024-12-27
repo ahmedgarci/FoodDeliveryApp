@@ -33,6 +33,16 @@ module.exports = class FoodRepository{
         }
     }
 
+    static async getFoodById(id){
+        try{
+            return await food.findById(id)
+            .populate(["categoryName","imageId"])
+            .select(["_id","name","Price","description","imageUrl"])
+            ;
+        }catch(e){
+            throw new Error(e.message)
+        }
+    }
 
 
 }

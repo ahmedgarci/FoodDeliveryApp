@@ -1,10 +1,10 @@
-const order = require("../../Entities/OrderEntity")
+const Order = require("../../Entities/OrderEntity")
 
 module.exports = class OrderRepository{
 
     static async PlaceOrder({userId,CartId,price}){
         try{
-            const order = await order.create({
+            let order = await Order.create({
                 price:price,
                 cart:CartId,
                 user:userId

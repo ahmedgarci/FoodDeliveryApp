@@ -2,6 +2,7 @@ const { createNewFood, deleteFood } = require("../../Repositories/Food/FoodRepos
 const FoodByCategory = require("../../UseCases/Food/FoodByCategory");
 const GetAllFoods = require("../../UseCases/Food/Crud/GetAllFoods");
 const ValidateFoodRequestcreate = require("../../Infrastructure/RequestsValidation/FoodRequests/ValidateFoodRequestcreate");
+const GetFoodById = require("../../UseCases/Food/GetFoodById");
 
 module.exports = class FoodController{
 
@@ -47,6 +48,15 @@ module.exports = class FoodController{
         let {idCategory} = req.query;
         try{
             return res.json({message:await FoodByCategory(idCategory)});
+        }catch(e){
+            return res.json({message:e.message})
+        }
+    }
+
+      async getFoodById(req,res){
+        let {FoodId} = req.params;
+        try{
+            return res.json({message:await GetFoodById(FoodId)});
         }catch(e){
             return res.json({message:e.message})
         }

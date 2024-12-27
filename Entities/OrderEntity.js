@@ -10,6 +10,6 @@ const orderSchema = new Schema({
     place:{type:String}
 },{timestamps:true}) 
 
-const order = mongo.model("order",orderSchema)
+const Order = mongo.model("Order",orderSchema)
 
-module.exports= order
+module.exports= Order
