@@ -21,12 +21,11 @@ class TokenRepository{
 
     static async getToken(_code){
         try{
-           
             return await Token.findOne({code:_code})
             .populate("user")
             .orFail(new Error("token not found"))
         }catch(e){
-            throw new Error("oops error while validating the token")
+            throw new Error(e.message)
         }
       
     }

@@ -40,11 +40,12 @@ class AuthController{
 
     static async activateAccount(req,res){
         try{
-            const {code} = req.query
+            const {code} = req.body
             await ActivateAccountUseCase(code)
             return res.json({message:"account activated ! "})
         }catch(e){
-            return res.json({error:e.message})
+            console.log(e);
+            return res.status(404).json({error:e.message})
         }
     }
 

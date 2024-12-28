@@ -17,7 +17,7 @@ module.exports = class CartRepository{
             throw e.message
         }
     }
-// cd C:\Program Files\MongoDB\Server\6.0\bin
+
 
 
     static async deleteItemFromCart({CartId,FoodId}){
