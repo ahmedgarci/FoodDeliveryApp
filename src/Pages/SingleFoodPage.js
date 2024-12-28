@@ -10,39 +10,19 @@ import {
   Grid,
   Box,
 } from "@mui/material";
-import { getSingleFoodData } from "../Functions/GetSingleFoodData/SingleFoodData";
 import LoadingComponent from "../Components/Common/Loading + Error/LoadingComponent";
 import ErrorComponent from "../Components/Common/Loading + Error/ErrorComponent";
+import FetchDataComponent from "../Functions/Hooks/useEffect/GetDataFromBackend";
 
-async function SingleFoodPage() {
+function SingleFoodPage() {
   const { addFoodToCart, checkIfFoodAlreadyInCart } = useContext(cartContext);
-  const [error,setError] = useState(null)
-  const [loading,setLoading]=useState(false)
-  const [data,setData]=useState(null) 
-
-  let {FoodId} = useParams()
-
-  useEffect(()=>{
-    const fetchData = async()=>{
-    try{
-      const {data , loading , error} = await getSingleFoodData(FoodId)
-      if(loading){setLoading(true)}
-      else if(error){
-        setError(error)
-        setLoading(false)
-      }else{
-        setData(data)
-        setLoading(false)
-      }
-    }catch(e){
-      setError("failed to fetch data")
-      setLoading(false)
-    }
-  }
-  fetchData();
-},[])
-if (loading) return <LoadingComponent />;
-if (error) return <ErrorComponent error={error} />;
+  let {id} = useParams()
+  console.log(id);
+  const { data, loading, error } =  FetchDataComponent({url:`http://localhost:3500/food/${id}`,method:"GET"})
+  
+  console.log(data);
+  if (loading) return <LoadingComponent />;
+  if (error) return <ErrorComponent error={error} />;
   return (
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4} alignItems="center">
@@ -51,7 +31,7 @@ if (error) return <ErrorComponent error={error} />;
             <CardMedia
               component="img"
               height="400"
-              image={""}
+              image={data._imageUrl}
               alt="Food Image"
               sx={{ objectFit: "cover" }}
             />
@@ -62,20 +42,19 @@ if (error) return <ErrorComponent error={error} />;
           <Card>
             <CardContent>
               <Typography variant="h4" gutterBottom>
-                {"aaaaaaaaaaaa"}
+                {data._name}
               </Typography>
 
               <Typography variant="body1" color="text.secondary" paragraph>
-                {"aaaaaaaaaaaa"}
+                Category : {data._categoryName}
               </Typography>
 
-              {/* Price */}
               <Typography
                 variant="h5"
                 color="error"
                 sx={{ fontWeight: "bold", mt: 2 }}
               >
-                Price: ${19}
+                Price: ${data._price}
               </Typography>
 
               <Box sx={{ mt: 4 }}>
@@ -87,13 +66,13 @@ if (error) return <ErrorComponent error={error} />;
                   <Button
                     variant="contained"
                     color="primary"
-                  //  onClick={() => addFoodToCart(id, imageUrl, price, name)}
+                    onClick={() => addFoodToCart(data._id, data._imageUrl, data._price, data._name)}
                   >
                     Add to Cart
                   </Button>
                 )}
               </Box>
-
+                  <h3>{data._description}</h3>
               <Box sx={{ mt: 4 }}>
                 <Typography variant="h6">Nutritional Info</Typography>
                 <Typography variant="body2" color="text.secondary">

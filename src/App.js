@@ -14,6 +14,7 @@ import { OrderPage } from './Pages/OderPage';
 import { CartContextProvider } from './Functions/Hooks/useContext/CartContext';
 import Footer from './Components/Common/Header + Footer/footer';
 import { UserContextProvider } from './Functions/Hooks/useContext/UserContext';
+import { ActivateAccount } from './Pages/ActivationAccount';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path='/' Component={HomePage}/>
           <Route path='/auth' Component={Authenticate}/>
+          <Route path='/activate' Component={ActivateAccount}/>
           <Route path='/food/:id' Component={SingleFoodPage}/>
           <Route path='/admin' Component={Admin}>
             <Route path='stat' element={<Statistique/>}  />
