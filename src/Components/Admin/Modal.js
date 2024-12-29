@@ -3,11 +3,13 @@ import { useState } from "react";
 import CreateNewFood from "../../Functions/Admin/CreateNewFood";
 import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
 import { UploadImageComponent } from "../Common/UploadImageComponent";
+import { CategoriesList } from "./Category/CategoriesList";
 
 export function FoodModal() {
   const [openModal, setOpenModal] = useState(false);
   const [Food,setFood]= useState({name:null,description:null,price:0,category:null,imageId:null})
   const [errors,setErrors] = useState([] || null)
+
 
   const HandleOnUploadComplete = (id)=>{
     setFood({...Food,imageId:id})
@@ -38,8 +40,8 @@ export function FoodModal() {
 
             <div>
               <Label htmlFor="category" value="Category" />
-              <TextInput id="category" placeholder="Enter category" required />
-            </div>
+              <CategoriesList/>
+              </div>
             <div>
               <Label htmlFor="price" value="Price ($)" />
               <TextInput onChange={(e)=>setFood({...Food,price:e.target.value })} id="price" type="number" placeholder="Enter price" required />

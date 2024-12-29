@@ -3,6 +3,7 @@ import FetchDataComponent from "../../../Functions/Hooks/useEffect/GetDataFromBa
 import ErrorComponent from "../../Common/Loading + Error/ErrorComponent";
 import LoadingComponent from "../../Common/Loading + Error/LoadingComponent";
 import { DeleteComponent } from "../Delete";
+import { CategoryModal } from "./Modal";
 
 function Categories(){
 
@@ -20,6 +21,7 @@ function Categories(){
   return  (
     <section id="category" className="mb-8">
       <h2 className="text-2xl font-semibold mb-4">Category</h2>
+      <CategoryModal />
       <div className="bg-white p-6 rounded shadow">
         <table className="w-full text-left">
           <thead>
