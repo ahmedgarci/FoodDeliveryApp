@@ -3,11 +3,10 @@ const food = require("../../Entities/FoodEntity")
 module.exports = class FoodRepository{
     static async createNewFood({_name,_price,_description,_imageId,_categoryId}){
         try{
-            // TO DO CATEGORY
             (await food.create({name:_name,Price:_price,
                 description:_description,
                 categoryName:_categoryId,
-                imageId:_imageId
+                imageId:_imageId,
             })).save()
         }catch(e){
             throw new Error(e.message)
@@ -43,6 +42,8 @@ module.exports = class FoodRepository{
             throw new Error(e.message)
         }
     }
+    
+
 
 
 }

@@ -25,14 +25,8 @@ app.get("/food/category",(req,res)=>foodController.getFoodByCategory(req,res))
 app.get("/food/:FoodId",(req,res)=>foodController.getFoodById(req,res))
 
 
-// COMMENTS ROUTES
-    
-
-
-
 
 // ORDER FEATURE
-
 const OrdersController = require("./Controller/Order/OrdersController");
 const checkTokenValidity = require("./Infrastructure/Middelwares/checkTokenValidity")
 const ordersController = new OrdersController();
@@ -40,8 +34,15 @@ app.post("/Order/place",checkTokenValidity,(req,res)=>ordersController.MakeOrder
 app.post("/Cart/add/:CartId",checkTokenValidity,(req,res)=>ordersController.addItem(req,res))
 
 
+// COMMENTS ROUTES
+const CommentController = require("./Controller/Comments/CommentsController")
+const CommentsController = new CommentController()
+app.post("/food/:id/comment",checkTokenValidity,(req,res)=>CommentsController.PostComment(req,res))
+app.delete("/food/:id/comment",checkTokenValidity,(req,res)=>CommentsController.DeleteComment(req,res))
+    
 
 
+//C:\Program Files\MongoDB\Server\6.0\bin>
 
 
 // ADMIN ROUTES

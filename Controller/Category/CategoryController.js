@@ -9,6 +9,7 @@ module.exports = class CategoryController{
             await AddCategory(catName);
             return res.json({message:"category created"})
         }catch(e){
+            console.log(e);
             return res.json({message:e.message})
         }
     }

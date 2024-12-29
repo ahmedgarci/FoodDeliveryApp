@@ -8,6 +8,6 @@ const commentSchema = new Schema({
 
 },{timestamps:true}) 
 
-const comment = mongo.model("comments",commentSchema)
+const Comment = mongo.model("comments",commentSchema)
 
-module.exports= comment
+module.exports= Comment
