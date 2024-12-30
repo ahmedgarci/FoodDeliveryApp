@@ -3,8 +3,9 @@ import { useState } from "react";
 import { PostData } from "../../../Functions/Common/PostDataToBackend";
 
  function CategoryModal() {
-    const [openModal, setOpenModal] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
     const [catName,setCatName]= useState(null)
+    
     function HandleCategoryCreation(){
         const {error,data,loading} = PostData({url:"http://localhost:3500/category",data:{"catName":catName}})
         if(error){

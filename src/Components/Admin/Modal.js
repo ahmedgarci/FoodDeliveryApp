@@ -15,8 +15,13 @@ export function FoodModal() {
     setFood({...Food,imageId:id})
   }
 
+  function handleCategorySelection(category){
+    setFood({...Food,category:category})
+  }
+
   const handleAddFood = async(e) => {
     e.preventDefault()
+    console.log(Food);
     const {response,error} = await CreateNewFood({data:Food});  
     if(error){
       setErrors([error])
@@ -33,22 +38,22 @@ export function FoodModal() {
             {errors && errors.length > 0  && <ErrorComponent error={errors} /> }
             <div>
               <Label htmlFor="foodName" value="Food Name" />
-              <TextInput onChange={(e)=>setFood({...Food,name:e.target.value })} id="foodName" placeholder="Enter food name" required />
+              <TextInput type="text" onChange={(e)=>setFood({...Food,name:e.target.value })} id="foodName" placeholder="Enter food name" required />
             </div>
 
             <UploadImageComponent onUploadComplete={HandleOnUploadComplete}/>
 
             <div>
               <Label htmlFor="category" value="Category" />
-              <CategoriesList/>
+              <CategoriesList onCategorySelect={handleCategorySelection}/>
               </div>
             <div>
               <Label htmlFor="price" value="Price ($)" />
-              <TextInput onChange={(e)=>setFood({...Food,price:e.target.value })} id="price" type="number" placeholder="Enter price" required />
+              <TextInput type="number" onChange={(e)=>setFood({...Food,price:e.target.value })} id="price" placeholder="Enter price" required />
             </div>
             <div>
               <Label htmlFor="description" value="Description" />
-              <Textarea id="description"
+              <Textarea id="description"  type="text"
                onChange={(e)=>setFood({...Food,description:e.target.value })}
                placeholder="Enter food description" rows={3} />
             </div>

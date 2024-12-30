@@ -13,6 +13,7 @@ import {
 import LoadingComponent from "../Components/Common/Loading + Error/LoadingComponent";
 import ErrorComponent from "../Components/Common/Loading + Error/ErrorComponent";
 import FetchDataComponent from "../Functions/Hooks/useEffect/GetDataFromBackend";
+import { FoodComments } from "../Components/Home/Food/FoodComments";
 
 function SingleFoodPage() {
   const { addFoodToCart, checkIfFoodAlreadyInCart } = useContext(cartContext);
@@ -38,7 +39,7 @@ function SingleFoodPage() {
           </Card>
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} className=" overflow-y-scroll overflow-x-hidden max-h-screen">
           <Card>
             <CardContent>
               <Typography variant="h4" gutterBottom>
@@ -73,10 +74,9 @@ function SingleFoodPage() {
                 )}
               </Box>
                   <h3>{data._description}</h3>
-              <Box sx={{ mt: 4 }}>
-                <Typography variant="h6">Nutritional Info</Typography>
+              <Box>
                 <Typography variant="body2" color="text.secondary">
-                  This section will be for comments.
+                <FoodComments comments={data._comments} />
                 </Typography>
               </Box>
             </CardContent>
