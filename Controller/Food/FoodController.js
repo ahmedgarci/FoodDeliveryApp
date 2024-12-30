@@ -7,12 +7,12 @@ const GetFoodById = require("../../UseCases/Food/GetFoodById");
 module.exports = class FoodController{
 
     async RegisterFood(req,res){
-        var {price,name,description,imageId} = req.body;
+        var {price,name,description,imageId,category} = req.body;
         try{
             ValidateFoodRequestcreate({_name:name,_price:price,_description:description,_imageFile:imageId});
             await createNewFood({_price:price,_name:name,_description:description,
                 _imageId:imageId,
-                _categoryId:"67143fbbbbdd573cdca103e4"});  
+                _categoryId:category});  
             return res.json({message:"new food was created :"+name});
         }catch(e){
             return res.status(403).json({error:e.message})

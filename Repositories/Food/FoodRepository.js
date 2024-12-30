@@ -1,4 +1,6 @@
+const { default: mongoose } = require("mongoose")
 const food = require("../../Entities/FoodEntity")
+const Comment = require("../../Entities/Commentaires")
 
 module.exports = class FoodRepository{
     static async createNewFood({_name,_price,_description,_imageId,_categoryId}){
@@ -36,8 +38,15 @@ module.exports = class FoodRepository{
         try{
             return await food.findById(id)
             .populate(["categoryName","imageId"])
-            .select(["_id","name","Price","description","imageUrl"])
-            ;
+            .populate({
+                    path:"comment",
+                    select:"createdAt commentaire",
+                    populate:{
+                        path:"user",
+                        select:"username"
+                    }}
+                    )
+            
         }catch(e){
             throw new Error(e.message)
         }

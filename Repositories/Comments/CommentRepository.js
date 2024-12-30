@@ -2,8 +2,8 @@ const Comment = require("../../Entities/Commentaires");
 const FoodRepository = require("../Food/FoodRepository");
 
 class CommentsRepository{
-
-    async createComment({userId,comment}){
+//TO FIX
+    static async createComment({userId,comment}){
         try{
             const SavedComment = await Comment.create({user:userId,commentaire:comment})
             return SavedComment._id
@@ -16,7 +16,7 @@ class CommentsRepository{
         try{
             var food = await FoodRepository.getFoodById(FoodId)
             const CommentId = await this.createComment({userId:userId,comment:Comment})
-            food.comments.push(CommentId)
+            food.comment.push(CommentId)
             await food.save()
         }catch(e){
             console.log(e);

@@ -8,7 +8,7 @@ const foodSchema = new Schema({
     description:{type:String,required:true},
     imageId:{type:mongo.Types.ObjectId,ref:"image"},
     categoryName:{type:mongo.Types.ObjectId,ref:"category"},
-    comments:[{type:mongo.Types.ObjectId,ref:"comments"}]
+    comment:[{type:mongo.Types.ObjectId,ref:"comments"}]
 },{timestamps:true}) 
 
 const food = mongo.model("food",foodSchema)
