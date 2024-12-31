@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { Register } from "../../Functions/Auth/Register"
-import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
+import { Register } from "../../Services/Auth/Register"
+import ErrorComponent from "../Common/ErrorComponent";
 
 function RegisterForm(){
 
@@ -14,6 +14,7 @@ function RegisterForm(){
         setErrors([error]);
       }
     }
+    
     return(
         <form id="registerForm" className="space-y-6">
         <h2 className="text-2xl font-semibold text-gray-800 text-center">Create a New Account</h2>

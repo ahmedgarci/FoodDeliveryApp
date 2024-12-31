@@ -1,22 +1,24 @@
 import { useState } from "react";
-import { PostData } from "../../Functions/Common/PostDataToBackend";
-import ErrorComponent from "./Loading + Error/ErrorComponent";
-import LoadingComponent from "./Loading + Error/LoadingComponent";
+import ErrorComponent from "../Common/ErrorComponent";
+import LoadingComponent from "../Common/LoadingComponent";
+import { uploadFoodImage } from "../../Features/UploadImage";
 
 function UploadImageComponent({onUploadComplete}) {
+
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [uploadedImg,setUploadedImg]=useState(null)
+
     async function uploadFile(e) {    
         setLoading(true)
         setError(null)
-        const formData = new FormData();
-        formData.append("image", e.target.files[0]);
-        
-        const { response, error } = await PostData({ url: "http://localhost:3500/food/image/upload", data: formData });
-
-        if(error){setError(error)}else{setUploadedImg(response.data); onUploadComplete(response.data.id) }
-
+        const {response,error} = await uploadFoodImage(e.target.files[0])
+        if(error){
+            setError(error)
+        }else{
+            setUploadedImg(response.data) 
+            onUploadComplete(response.data.id) 
+        }
         setLoading(false);
     }
     

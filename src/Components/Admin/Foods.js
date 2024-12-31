@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend";
-import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
-import LoadingComponent from "../Common/Loading + Error/LoadingComponent";
-import { DeleteComponent } from "./Delete";
+import ErrorComponent from "../Common/ErrorComponent";
+import LoadingComponent from "../Common/LoadingComponent";
 import { FoodModal } from "./Modal";
+import { Fetch } from "../../Hooks/Fetch";
+import { DeleteComponent } from "../../Features/Delete";
 
 function Foods() {
-  const { data, loading, error } = FetchDataComponent({
+  const { data, loading, error } = Fetch({
     url: "http://localhost:3500/food/all",
     method: "GET",
   });

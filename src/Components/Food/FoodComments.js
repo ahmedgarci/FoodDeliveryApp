@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
-import { PostData } from "../../../Functions/Common/PostDataToBackend";
 import { useState } from "react";
+import { POST } from "../../Services/Common/POST";
+
 // TO FIX
 function FoodComments({ comments }) {
 
@@ -8,9 +9,9 @@ function FoodComments({ comments }) {
   const [userComment,setUserComment] = useState(null)
 
   async function PostComment(){
-    const {error,response} = await PostData({url:`http://localhost:3500/food/${id}/comment`,
+    const {error,response} = await POST({url:`http://localhost:3500/food/${id}/comment`,
     data:{"comment":userComment}})
-
+    
   }
 
   return (

@@ -1,12 +1,12 @@
 import React from "react";
-import FetchDataComponent from "../../../Functions/Hooks/useEffect/GetDataFromBackend";
-import ErrorComponent from "../../Common/Loading + Error/ErrorComponent";
-import LoadingComponent from "../../Common/Loading + Error/LoadingComponent";
+import ErrorComponent from "../Common/ErrorComponent";
+import LoadingComponent from "../Common/LoadingComponent";
 import { FoodCard } from "./FoodCard";
 import { Typography, Grid, Container, Box } from "@mui/material";
+import { Fetch } from "../../Hooks/Fetch";
 
-function LatestFoods() {
-  const { data, loading, error } = FetchDataComponent({
+function LatestFood() {
+  const { data, loading, error } = Fetch({
     url: "http://localhost:3500/food/all",
     method: "GET",
   });
@@ -52,4 +52,4 @@ function LatestFoods() {
   );
 }
 
-export { LatestFoods };
+export { LatestFood };

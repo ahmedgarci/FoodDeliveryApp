@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function FetchDataComponent({ url , method , dataToSend=null}) {
+function Fetch({ url , method , dataToSend=null}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,4 +41,4 @@ function FetchDataComponent({ url , method , dataToSend=null}) {
   return {data,loading,error}
 }
 
-export default FetchDataComponent;
+export {Fetch};

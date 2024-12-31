@@ -1,6 +1,6 @@
 import { OrderStages } from "../Components/Order/OrderStages"
-import { LatestFoods } from "../Components/Home/Food/LatestFoods"
-import ServicesOffered from "../Components/Common/Service"
+import { LatestFood } from "../Components/Food/LatestFood"
+import ServicesOffered from "../utils/Services"
 
 function HomePage (){
     
@@ -19,7 +19,7 @@ function HomePage (){
   </section>
       
 
-        <LatestFoods />
+        <LatestFood/>
         <OrderStages />
  
 

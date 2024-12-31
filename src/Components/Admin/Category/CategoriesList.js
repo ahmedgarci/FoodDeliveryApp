@@ -1,21 +1,20 @@
 import {  useState } from "react"
-import FetchDataComponent from "../../../Functions/Hooks/useEffect/GetDataFromBackend"
-import LoadingComponent from "../../Common/Loading + Error/LoadingComponent"
-import ErrorComponent from "../../Common/Loading + Error/ErrorComponent"
+import LoadingComponent from "../../Common/LoadingComponent"
+import ErrorComponent from "../../Common/ErrorComponent"
+import { Fetch } from "../../../Hooks/Fetch"
 
 function CategoriesList({onCategorySelect}){
     const [categorySelected,setCategorySelected]= useState(null)
 
     function HandleCategoryChange(e){
         setCategorySelected(e.target.value)
-        console.log(categorySelected);
         if(onCategorySelect){
             onCategorySelect(categorySelected);
         }
     }
 
 
-    const {data,error,loading} = FetchDataComponent({url:"http://localhost:3500/category",method:"GET"})
+    const {data,error,loading} = Fetch({url:"http://localhost:3500/category",method:"GET"})
     
     if(loading){<LoadingComponent />}
     if(error){<ErrorComponent  error={error}/>}

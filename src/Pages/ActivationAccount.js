@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactCodeInput from 'react-code-input';
-import { PostData } from '../Functions/Common/PostDataToBackend';
-import ErrorComponent from '../Components/Common/Loading + Error/ErrorComponent';
+import { POST } from '../Services/Common/POST';
 
 function ActivateAccount() {
 
@@ -13,8 +12,7 @@ function ActivateAccount() {
     }
 
     async function handleActivationAccount(value){
-        const { response,error} = await PostData({url:"http://localhost:3500/verify"
-        ,data:{"code":value}})
+        const { response,error} = await ActivateAccount(value)
         if(response){
             console.log(response);
         }else{

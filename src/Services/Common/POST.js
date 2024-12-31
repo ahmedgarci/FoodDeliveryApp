@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function PostData({url,data}){
+async function POST({url,data}){
     try {
         const response = await axios.post(url,data, { withCredentials: true });
         return { response }; 
@@ -10,4 +10,4 @@ async function PostData({url,data}){
 
 }
 
-export {PostData}
+export {POST}

@@ -1,11 +1,11 @@
 import React from "react";
-import { DeleteDataFromBackend } from "../../Functions/Common/DeleteDataFromBackend";
+import { Delete } from "../Services/Admin/Delete";
 
 function DeleteComponent({ Id , Url}) {
 
   const handleDelete = async () => {
     try {
-      await DeleteDataFromBackend({
+      await Delete({
         url: Url,
         data: Id
       });

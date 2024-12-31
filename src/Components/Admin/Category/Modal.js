@@ -1,13 +1,13 @@
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
-import { PostData } from "../../../Functions/Common/PostDataToBackend";
+import { POST} from "../../../Services/Common/POST";
 
  function CategoryModal() {
     const [openModal, setOpenModal] = useState(false);
     const [catName,setCatName]= useState(null)
     
     function HandleCategoryCreation(){
-        const {error,data,loading} = PostData({url:"http://localhost:3500/category",data:{"catName":catName}})
+        const {error,data,loading} = POST({url:"http://localhost:3500/category",data:{"catName":catName}})
         if(error){
             console.log(error);
         }

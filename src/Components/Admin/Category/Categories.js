@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import FetchDataComponent from "../../../Functions/Hooks/useEffect/GetDataFromBackend"
-import ErrorComponent from "../../Common/Loading + Error/ErrorComponent";
-import LoadingComponent from "../../Common/Loading + Error/LoadingComponent";
-import { DeleteComponent } from "../Delete";
+import ErrorComponent from "../../Common/ErrorComponent";
+import LoadingComponent from "../../Common/LoadingComponent";
 import { CategoryModal } from "./Modal";
+import { Fetch } from "../../../Hooks/Fetch";
+import { DeleteComponent } from "../../../Features/Delete";
 
 function Categories(){
 
-  const {data,loading,error} =  FetchDataComponent({url:"http://localhost:3500/category",method:"GET"})
+  const {data,loading,error} =  Fetch({url:"http://localhost:3500/category",method:"GET"})
   const [categories,setCategories]= useState(data|| null)
   
   useEffect(()=>{
@@ -35,11 +35,11 @@ function Categories(){
               categories.map((category) => (
                 <tr key={category._id}>
                   <td className="border-b p-4">{category.name}</td>
-                  <td className="border-b p-4"><DeleteComponent 
+                  <td className="border-b p-4">
+                    <DeleteComponent
                   Url={"http://localhost:3500/category/"}
-                  Id={category._id}
-                  
-                  /> </td>
+                  Id={category._id}/> 
+                  </td>
                 </tr>
               )))
               } 

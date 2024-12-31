@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { cartContext } from "../../../Functions/Hooks/useContext/CartContext";
-import { userContext } from "../../../Functions/Hooks/useContext/UserContext";
+import { cartContext } from "../../Context/CartContext";
+import { userContext } from "../../Context/UserContext";
 
 function NavigationBar(){
     const {itemsNumber}=useContext(cartContext)
     const {user} = useContext(userContext)
-    console.log(user);
+
     return(
         <header class="bg-white shadow">
         <div class="container mx-auto flex justify-between items-center p-4">

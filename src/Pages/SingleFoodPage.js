@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import {  useParams } from "react-router";
-import { cartContext } from "../Functions/Hooks/useContext/CartContext";
 import {
   Card,
   CardContent,
@@ -10,16 +9,17 @@ import {
   Grid,
   Box,
 } from "@mui/material";
-import LoadingComponent from "../Components/Common/Loading + Error/LoadingComponent";
-import ErrorComponent from "../Components/Common/Loading + Error/ErrorComponent";
-import FetchDataComponent from "../Functions/Hooks/useEffect/GetDataFromBackend";
-import { FoodComments } from "../Components/Home/Food/FoodComments";
+import LoadingComponent from "../Components/Common/LoadingComponent";
+import ErrorComponent from "../Components/Common/ErrorComponent";
+import {Fetch} from "../Hooks/Fetch";
+import { cartContext } from "../Context/CartContext";
+import { FoodComments } from "../Components/Food/FoodComments";
 
 function SingleFoodPage() {
   const { addFoodToCart, checkIfFoodAlreadyInCart } = useContext(cartContext);
   let {id} = useParams()
   console.log(id);
-  const { data, loading, error } =  FetchDataComponent({url:`http://localhost:3500/food/${id}`,method:"GET"})
+  const { data, loading, error } =  Fetch({url:`http://localhost:3500/food/${id}`,method:"GET"})
   
   console.log(data);
   if (loading) return <LoadingComponent />;
@@ -76,7 +76,7 @@ function SingleFoodPage() {
                   <h3>{data._description}</h3>
               <Box>
                 <Typography variant="body2" color="text.secondary">
-                <FoodComments comments={data._comments} />
+                  <FoodComments comments={data._comments} />
                 </Typography>
               </Box>
             </CardContent>

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { Login } from "../../Functions/Auth/Login";
-import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
-import { userContext } from "../../Functions/Hooks/useContext/UserContext";
+import { Login } from "../../Services/Auth/Login";
+import ErrorComponent from "../Common/ErrorComponent";
+import { userContext } from "../../Context/UserContext";
 
 function LoginForm(){
     const [user, setUser] = useState({ email: null, password: null });

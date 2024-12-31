@@ -1,13 +1,12 @@
-import { PostData } from '../Common/PostDataToBackend';
 
 async function Login({email,password}){
-        const {response,error} = await PostData({
+        const {response,error} = await POST({
             url:"http://localhost:3500/login",
             data:{email,password},
            })
         return {
-                response:response,
-                error:error}
+                response,
+                error}
 
 }
 

@@ -1,16 +1,15 @@
 import { Button, Modal, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
-import CreateNewFood from "../../Functions/Admin/CreateNewFood";
-import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
-import { UploadImageComponent } from "../Common/UploadImageComponent";
+import ErrorComponent from "../Common/ErrorComponent";
+import { UploadImageComponent } from "./UploadImageComponent";
 import { CategoriesList } from "./Category/CategoriesList";
+import CreateNewFood from "../../Services/Admin/CreateNewFood";
 
 export function FoodModal() {
   const [openModal, setOpenModal] = useState(false);
   const [Food,setFood]= useState({name:null,description:null,price:0,category:null,imageId:null})
   const [errors,setErrors] = useState([] || null)
-
-
+  
   const HandleOnUploadComplete = (id)=>{
     setFood({...Food,imageId:id})
   }
@@ -21,7 +20,6 @@ export function FoodModal() {
 
   const handleAddFood = async(e) => {
     e.preventDefault()
-    console.log(Food);
     const {response,error} = await CreateNewFood({data:Food});  
     if(error){
       setErrors([error])

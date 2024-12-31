@@ -1,8 +1,7 @@
-
-import { PostData } from '../Common/PostDataToBackend';
+import { POST } from '../Common/POST';
 
 async function Register(user){
-        const {response,error} = await PostData({
+        const {response,error} = await POST({
             url:"http://localhost:3500/register",
             data:{
                 email:user.email,

@@ -1,5 +1,5 @@
 import { createContext, useState} from "react";
-import { PostData } from "../../Common/PostDataToBackend";
+import { POST } from "../Services/Common/POST";
 
 
 const cartContext = createContext()
@@ -15,8 +15,7 @@ function CartContextProvider({children}){
             setFoodsInCart([...foodsInCart,{id,quantity:1,image:image,price:price,name:name}])
         }
         try{            
-            const {error,response} = await PostData({url:`http://localhost:3500/Cart/add/${cartId}`,data:{FoodId:id}})
-          //  console.log(response.data);
+            const {error,response} = await POST({url:`http://localhost:3500/Cart/add/${cartId}`,data:{FoodId:id}})
             error? console.log(error) : setCartId(response.data)           
         }catch(e){
             alert("can t add item to your cart ")

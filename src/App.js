@@ -2,18 +2,18 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from './Pages/Home';
 import { Authenticate } from './Pages/Auth';
-import {NavigationBar} from "./Components/Common/Header + Footer/NavigationBar"
+import {NavigationBar} from "./Components/Common/NavigationBar"
 import { SingleFoodPage } from './Pages/SingleFoodPage';
 import { Admin } from './Pages/Admin';
 import { Statistique } from './Components/Admin/Statistiques';
 import { Categories } from './Components/Admin/Category/Categories';
 import { Users } from './Components/Admin/Users';
 import { Foods } from './Components/Admin/Foods';
-import NotFound from './Components/Common/PageNotFound';
+import NotFound from './Pages/PageNotFound';
 import { OrderPage } from './Pages/OderPage';
-import { CartContextProvider } from './Functions/Hooks/useContext/CartContext';
-import Footer from './Components/Common/Header + Footer/footer';
-import { UserContextProvider } from './Functions/Hooks/useContext/UserContext';
+import { CartContextProvider } from './Context/CartContext';
+import Footer from './Components/Common/footer';
+import { UserContextProvider } from './Context/UserContext';
 import { ActivateAccount } from './Pages/ActivationAccount';
 
 function App() {

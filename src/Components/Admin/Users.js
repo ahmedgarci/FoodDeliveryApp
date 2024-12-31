@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import FetchDataComponent from "../../Functions/Hooks/useEffect/GetDataFromBackend";
-import ErrorComponent from "../Common/Loading + Error/ErrorComponent";
-import LoadingComponent from "../Common/Loading + Error/LoadingComponent";
-import { DeleteComponent } from "./Delete";
+import ErrorComponent from "../Common/ErrorComponent";
+import LoadingComponent from "../Common/LoadingComponent";
+import { Fetch } from "../../Hooks/Fetch";
+import { DeleteComponent } from "../../Features/Delete";
 
 function Users(){
-  const { data, loading, error } = FetchDataComponent({
+  const { data, loading, error } = Fetch({
     url: "http://localhost:3500/users",
     method: "GET"
   });
@@ -36,10 +36,11 @@ function Users(){
                <td>{user?.username}</td>
                 <td>{user?.email}</td>
                 
-                <td><DeleteComponent
+                <td>
+                  <DeleteComponent
                   Id={user._id}
-                  Url={"http://localhost:3500/users/"}
-/></td>
+                  Url={"http://localhost:3500/users/"}/>
+                </td>
               </tr>
             ))}
           </tbody>

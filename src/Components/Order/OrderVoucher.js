@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
-import { cartContext } from "../../Functions/Hooks/useContext/CartContext"
-import { ConfirmOrder } from "../../Functions/PlaceOrder/PlaceOrder"
+import { useContext } from "react"
+import { cartContext } from "../../Context/CartContext"
+import { ConfirmOrder } from "../../Services/Order/PlaceOrder"
 
 
 function Voucher(){
