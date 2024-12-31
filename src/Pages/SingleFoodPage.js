@@ -18,12 +18,12 @@ import { FoodComments } from "../Components/Food/FoodComments";
 function SingleFoodPage() {
   const { addFoodToCart, checkIfFoodAlreadyInCart } = useContext(cartContext);
   let {id} = useParams()
-  console.log(id);
+
   const { data, loading, error } =  Fetch({url:`http://localhost:3500/food/${id}`,method:"GET"})
-  
-  console.log(data);
+  console.log(data);  
   if (loading) return <LoadingComponent />;
   if (error) return <ErrorComponent error={error} />;
+
   return (
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4} alignItems="center">

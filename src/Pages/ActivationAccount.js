@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactCodeInput from 'react-code-input';
-import { POST } from '../Services/Common/POST';
+import { ActivateUserAccount } from '../Services/Auth/ActivateAccount';
+import ErrorComponent from '../Components/Common/ErrorComponent';
 
 function ActivateAccount() {
-
+    const [error,setError]= useState(null)
+    const [successMsg,setSuccessMsg]=useState(null)
 
     function CheckIfCodeFilled(value){
         if(value.length == 6){
@@ -12,12 +14,10 @@ function ActivateAccount() {
     }
 
     async function handleActivationAccount(value){
-        const { response,error} = await ActivateAccount(value)
-        if(response){
-            console.log(response);
-        }else{
-            console.log(error);
-        }
+        const { response,error} = await ActivateUserAccount(value)
+        error ? setError(error) : 
+        setSuccessMsg("account activated u are be redirected to login page")
+        
     }
 
 
@@ -42,9 +42,12 @@ function ActivateAccount() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-            <h1 className="text-2xl font-bold text-gray-800 mb-6">
+            <h1 className="text-2xl font-bold text-gray-800 mb-1">
                 Activate Your Account
             </h1>
+            {error ? <h2 className=' font-semibold text-red-600 py-5'>{error}</h2>:
+                <h2 className=' text-green-500'>{successMsg}</h2>
+             }
             <ReactCodeInput 
                 type="text"
                 fields={6}

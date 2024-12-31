@@ -9,7 +9,9 @@ export function FoodModal() {
   const [openModal, setOpenModal] = useState(false);
   const [Food,setFood]= useState({name:null,description:null,price:0,category:null,imageId:null})
   const [errors,setErrors] = useState([] || null)
+  const [Success,setSuccessMsg] = useState(null)
   
+
   const HandleOnUploadComplete = (id)=>{
     setFood({...Food,imageId:id})
   }
@@ -23,7 +25,11 @@ export function FoodModal() {
     const {response,error} = await CreateNewFood({data:Food});  
     if(error){
       setErrors([error])
+    }else{
+      setErrors(null)
+      setSuccessMsg(response.data.message)
     }
+   
   };
 
   return (
@@ -33,7 +39,8 @@ export function FoodModal() {
         <Modal.Header>Add New Food</Modal.Header>
         <Modal.Body>
           <div className="space-y-4">
-            {errors && errors.length > 0  && <ErrorComponent error={errors} /> }
+            {(errors && errors.length > 0) ? <ErrorComponent error={errors} /> : <p>{Success}</p> }
+            
             <div>
               <Label htmlFor="foodName" value="Food Name" />
               <TextInput type="text" onChange={(e)=>setFood({...Food,name:e.target.value })} id="foodName" placeholder="Enter food name" required />
@@ -47,11 +54,12 @@ export function FoodModal() {
               </div>
             <div>
               <Label htmlFor="price" value="Price ($)" />
-              <TextInput type="number" onChange={(e)=>setFood({...Food,price:e.target.value })} id="price" placeholder="Enter price" required />
+              <TextInput onChange={(e)=>setFood({...Food,price:e.target.value})} id="price" placeholder="Enter price" required />
             </div>
             <div>
               <Label htmlFor="description" value="Description" />
-              <Textarea id="description"  type="text"
+              <Textarea id="description"  
+              value={Food.description || ""}
                onChange={(e)=>setFood({...Food,description:e.target.value })}
                placeholder="Enter food description" rows={3} />
             </div>

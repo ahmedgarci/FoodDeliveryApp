@@ -9,6 +9,7 @@ function CategoriesList({onCategorySelect}){
     function HandleCategoryChange(e){
         setCategorySelected(e.target.value)
         if(onCategorySelect){
+            console.log(categorySelected);
             onCategorySelect(categorySelected);
         }
     }

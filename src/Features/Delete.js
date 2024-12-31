@@ -9,6 +9,7 @@ function DeleteComponent({ Id , Url}) {
         url: Url,
         data: Id
       });
+      
     } catch (error) {
       alert("error has occured")
     }
