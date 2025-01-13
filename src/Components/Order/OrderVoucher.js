@@ -2,16 +2,20 @@ import { useContext } from "react"
 import { cartContext } from "../../Context/CartContext"
 import { ConfirmOrder } from "../../Services/Order/PlaceOrder"
 
+import { useNavigate } from "react-router";
 
 function Voucher(){
-    
     const {calculateSum,cartId} = useContext(cartContext)
+    const navigate = useNavigate()
+
 
     async function HandleOrderConfirmation(){
       const {error,response} = await ConfirmOrder({CartId:cartId})
+      
       if(error){
         alert(error)
       }else{
+        navigate("/success")
         console.log(response);
       }
     }

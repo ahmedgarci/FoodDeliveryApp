@@ -20,6 +20,7 @@ function CartContextProvider({ children }) {
     }
 
     try {
+      console.log(cartId);
       const { error, response } = await POST({
         url: `http://localhost:3500/Cart/add/${cartId}`,
         data: { FoodId: id },
@@ -28,6 +29,7 @@ function CartContextProvider({ children }) {
       if (error) {
         alert(error);
       } else {
+        console.log(response);
         setCartId(response.data);
       }
     } catch (e) {

@@ -12,7 +12,6 @@ function DeleteComponent({ Id, Url, DeleteFunction }) {
       if (error) {
         alert("An error occurred while deleting the item.");
       } else {
-        // Call the provided DeleteFunction to update UI after successful delete
         DeleteFunction();
       }
     } catch (error) {

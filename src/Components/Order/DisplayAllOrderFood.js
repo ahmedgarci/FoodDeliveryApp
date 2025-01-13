@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { cartContext } from "../../Context/CartContext";
+import { DeleteComponent } from "../../Features/Delete";
 
 function DisplayAllOrderFood(){
 
@@ -21,7 +22,10 @@ function DisplayAllOrderFood(){
                 </div>
                 <p className="text-gray-800 font-semibold">Prix: {food.price}$</p>
               </div>
-              <button className="bg-red-600 text-white rounded-md" >delete</button>
+              <DeleteComponent
+              
+              className="bg-red-600 text-white rounded-md"
+               />
 
             </div>
           </div>
