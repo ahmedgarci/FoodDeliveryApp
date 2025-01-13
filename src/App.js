@@ -15,6 +15,7 @@ import { CartContextProvider } from './Context/CartContext';
 import Footer from './Components/Common/footer';
 import { UserContextProvider } from './Context/UserContext';
 import { ActivateAccount } from './Pages/ActivationAccount';
+import OrderSuccess from './Pages/SuccessfulOrderPage';
 
 function App() {
   return (
@@ -33,7 +34,8 @@ function App() {
             <Route path='users' element={<Users/>}/>
             <Route path='food' element={<Foods />}/>
           </Route>
-          <Route path='/order' element={<OrderPage/>}/>          
+          <Route path='/order' element={<OrderPage/>}/>  
+          <Route path="/success" element={<OrderSuccess/>} />        
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         <Footer/>

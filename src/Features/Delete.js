@@ -1,17 +1,22 @@
 import React from "react";
 import { Delete } from "../Services/Admin/Delete";
 
-function DeleteComponent({ Id , Url}) {
-
+function DeleteComponent({ Id, Url, DeleteFunction }) {
   const handleDelete = async () => {
     try {
-      await Delete({
+      const { error } = await Delete({
         url: Url,
-        data: Id
+        data: Id,
       });
-      
+
+      if (error) {
+        alert("An error occurred while deleting the item.");
+      } else {
+        // Call the provided DeleteFunction to update UI after successful delete
+        DeleteFunction();
+      }
     } catch (error) {
-      alert("error has occured")
+      alert("An error occurred while deleting the item.");
     }
   };
 

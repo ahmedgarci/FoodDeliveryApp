@@ -6,9 +6,11 @@ async function Delete({ url, data }) {
     const response = await axios.delete(`${url}${data}`, {
       withCredentials: true,
     });
+    console.log(response);
     return response;
   } catch (e) {
-    alert(e)
+    console.log(e);
+
   }
 }
 

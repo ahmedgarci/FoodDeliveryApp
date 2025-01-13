@@ -9,11 +9,19 @@ function Users(){
     url: "http://localhost:3500/users",
     method: "GET"
   });
-  const [users,setUsers] = useState([data])
+  const [FetchedUsers,setFecthedUsers] = useState([])
 
   useEffect(() => {
-    setUsers(data);
+    if (data) {
+      setFecthedUsers(data);
+    }
   }, [data]);
+  
+
+  const handleDelete = (id) => {
+    setFecthedUsers((prevData) => prevData.filter((item) => item._id !== id));
+  };
+
 
   if (error) return <ErrorComponent  error={error}/>;
   if (loading) return <LoadingComponent />;
@@ -31,7 +39,7 @@ function Users(){
               </tr>
             </thead>
             <tbody>
-            {users && users.length > 0 && users.map((user) => (
+            {FetchedUsers && FetchedUsers.length > 0 && FetchedUsers.map((user) => (
               <tr>
                <td>{user?.username}</td>
                 <td>{user?.email}</td>
@@ -39,7 +47,9 @@ function Users(){
                 <td>
                   <DeleteComponent
                   Id={user._id}
-                  Url={"http://localhost:3500/users/"}/>
+                  Url={"http://localhost:3500/users/"}
+                  DeleteFunction={()=>handleDelete(user._id)}
+                  />
                 </td>
               </tr>
             ))}

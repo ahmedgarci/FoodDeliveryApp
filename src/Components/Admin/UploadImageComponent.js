@@ -27,9 +27,6 @@ function UploadImageComponent({onUploadComplete}) {
 
     return (
         <>
-         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="multiple_files">
-            Food Image
-            </label>
         {uploadedImg? <img src={uploadedImg.imageUrl}/> :
         <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="multiple_files">

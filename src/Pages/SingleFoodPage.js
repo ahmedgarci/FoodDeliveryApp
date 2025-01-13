@@ -20,7 +20,6 @@ function SingleFoodPage() {
   let {id} = useParams()
 
   const { data, loading, error } =  Fetch({url:`http://localhost:3500/food/${id}`,method:"GET"})
-  console.log(data);  
   if (loading) return <LoadingComponent />;
   if (error) return <ErrorComponent error={error} />;
 
@@ -59,7 +58,7 @@ function SingleFoodPage() {
               </Typography>
 
               <Box sx={{ mt: 4 }}>
-                {checkIfFoodAlreadyInCart(1) ? (
+                {checkIfFoodAlreadyInCart(data._id) ? (
                   <Typography variant="body1" color="text.primary">
                     This item is already in your cart.
                   </Typography>
@@ -67,7 +66,7 @@ function SingleFoodPage() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => addFoodToCart(data._id, data._imageUrl, data._price, data._name)}
+                    onClick={async() => await addFoodToCart(data._id, data._imageUrl, data._price, data._name)}
                   >
                     Add to Cart
                   </Button>

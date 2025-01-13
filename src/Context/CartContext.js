@@ -1,66 +1,68 @@
-import { createContext, useState} from "react";
+import { createContext, useState } from "react";
 import { POST } from "../Services/Common/POST";
 
+const cartContext = createContext();
 
-const cartContext = createContext()
-function CartContextProvider({children}){
+function CartContextProvider({ children }) {
+  const [foodsInCart, setFoodsInCart] = useState([]);
+  const [itemsNumber, setItemsNumber] = useState(0);
+  const [cartId, setCartId] = useState("67570bb0da1b343b39cbfc3b");
 
-    const [foodsInCart,setFoodsInCart] = useState([])
-    const [itemsNumber,setItemsNumer] = useState(0)
-    const [cartId,setCartId] = useState("67570bb0da1b343b39cbfc3b")
+  async function addFoodToCart(id, image, price, name) {
+    const isFound = foodsInCart.some((food) => food.id === id);
 
-    async function addFoodToCart(id,image,price,name){
-        const isFound = foodsInCart.find(food=>food.id === id)
-        if(!isFound){
-            setFoodsInCart([...foodsInCart,{id,quantity:1,image:image,price:price,name:name}])
-        }
-        try{            
-            const {error,response} = await POST({url:`http://localhost:3500/Cart/add/${cartId}`,data:{FoodId:id}})
-            error? console.log(error) : setCartId(response.data)           
-        }catch(e){
-            alert("can t add item to your cart ")
-        }
-        setItemsNumer(foodsInCart.length)
+    if (!isFound) {
+      setFoodsInCart((prevFoods) => [
+        ...prevFoods,
+        { id, quantity: 1, image, price, name },
+      ]);
+      setItemsNumber((prevCount) => prevCount + 1);
     }
 
-    function deleteFood(id){
-        const filteredFoods = foodsInCart.filter(food=> food.id !== id)
-        setFoodsInCart([filteredFoods])
+    try {
+      const { error, response } = await POST({
+        url: `http://localhost:3500/Cart/add/${cartId}`,
+        data: { FoodId: id },
+      });
+
+      if (error) {
+        alert(error);
+      } else {
+        setCartId(response.data);
+      }
+    } catch (e) {
+      alert("Can't add item to your cart.");
     }
+  }
 
-    function checkIfFoodAlreadyInCart(id){
-        let Exist =  foodsInCart.find(item => item.id === id)
-        return Exist ? true : false
-    }
+  function deleteFood(id) {
+    setFoodsInCart((prevFoods) => prevFoods.filter((food) => food.id !== id));
+    setItemsNumber((prevCount) => Math.max(0, prevCount - 1));
+  }
 
+  function checkIfFoodAlreadyInCart(id) {
+    return foodsInCart.some((item) => item.id === id);
+  }
 
-    function calculateSum(){
-        let sum = 0;
-        foodsInCart.map(food=>sum+=food.price)
-        return sum;
-    }
+  function calculateSum() {
+    return foodsInCart.reduce((sum, food) => sum + food.price * food.quantity, 0);
+  }
 
+  const ExportedFunctions = {
+    cartId,
+    itemsNumber,
+    foodsInCart,
+    deleteFood,
+    addFoodToCart,
+    calculateSum,
+    checkIfFoodAlreadyInCart,
+  };
 
-
-    const ExportedFunction = {
-        cartId,
-        itemsNumber,
-        foodsInCart,
-        deleteFood,
-        addFoodToCart,
-        calculateSum,
-        checkIfFoodAlreadyInCart
-    }
-
-
-
-
-    return(
-        <cartContext.Provider value={ExportedFunction}>
-            {children}
-        </cartContext.Provider>
-
-    )
+  return (
+    <cartContext.Provider value={ExportedFunctions}>
+      {children}
+    </cartContext.Provider>
+  );
 }
 
-export {cartContext,CartContextProvider}
+export { cartContext, CartContextProvider };
