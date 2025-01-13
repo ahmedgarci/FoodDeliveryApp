@@ -7,30 +7,28 @@ module.exports = class CategoryController{
         let {catName} = req.body
         try{
             await AddCategory(catName);
-            return res.json({message:"category created"})
+            return res.status(201).json({message:"category created"})
         }catch(e){
-            console.log(e);
-            return res.json({message:e.message})
+            return res.status(400).json({message:e.message})
         }
     }
 
     async deleteCategory(req,res){
         let {idCategory} = req.params
-        console.log(idCategory);
         try{
             await deleteCategory(idCategory)
-            return res.json({message:"category deleted "})
+            return res.status(200).json({message:"category deleted "})
         }catch(e){
-            return res.status(403).json({error:e.message})
+            return res.status(400).json({error:e.message})
         }
     }
 
     async getAllCategories(req,res){
         try{
             const allCategories = await getAllCategories()
-            return res.json({message:allCategories})
+            return res.status(200).json({message:allCategories})
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(500).json({message:e.message})
         }
     }
 

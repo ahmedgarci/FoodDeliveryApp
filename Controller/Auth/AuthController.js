@@ -8,7 +8,6 @@ class AuthController{
     
     static async Register(req,res){
         const{email,phone,fullname,address,password} = req.body;
-        console.log(req.body);
         
         try{
             RegisterRequestValidation({_address:address,
@@ -21,7 +20,7 @@ class AuthController{
         });
         return res.json({"response":response})
         }catch(e){
-            return res.status(401).json({error:e.message})
+            return res.status(400).json({error:e.message})
         }
     }
 
@@ -34,7 +33,7 @@ class AuthController{
             return res.json({"token":token})
         }catch(e){
             console.log(e.message);
-            return res.status(401).json({error:e.message})
+            return res.status(400).json({error:e.message})
         }
     }
 
@@ -44,7 +43,6 @@ class AuthController{
             await ActivateAccountUseCase(code)
             return res.json({message:"account activated ! "})
         }catch(e){
-            console.log(e);
             return res.status(404).json({error:e.message})
         }
     }

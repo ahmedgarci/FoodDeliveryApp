@@ -3,14 +3,15 @@ const RedisService = require("../../../Infrastructure/Redis/RedisService")
 module.exports = async()=>{
     const redisService = new RedisService();
     const cashingKey="allFoods";
+
     try{
-         const cashedFoods = await redisService.getDataFromRedis(cashingKey)
-        if(cashedFoods){
-            return cashedFoods
-        }
+      //  const cashedFoods = await redisService.getDataFromRedis(cashingKey)
+      //  if(cashedFoods){
+      //      return cashedFoods
+      //  }
         var allFoods = await FoodRepository.getAllFoods();
 
-        redisService.setDataIntoRedis({key:cashingKey,value:allFoods})
+      //  redisService.setDataIntoRedis({key:cashingKey,value:allFoods})
 
         return allFoods;
     

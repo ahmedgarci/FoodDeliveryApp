@@ -12,11 +12,14 @@ module.exports = ({_name,_price,_description,_imageFile,Category})=>{
         throw new Error("price is required")
     }
 
-  //  if(!_imageFile ||_imageFile.trim().length == 0 ){
-  //      throw new Error("Image path is required")
-  //  }
+    if(!_imageFile ||_imageFile.trim().length == 0 ){
+        throw new Error("Image path is required")
+    }
 
-    // TO DO CHECK CATEGORY
+    if(!Category || Category.trim().length == 0 ){
+        console.log(Category);
+        throw new Error("Category is required")
+    }
   
 
 }

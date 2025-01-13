@@ -6,23 +6,22 @@ module.exports  = class UserController{
     async getAllUsers(req,res){
         try{
             const users = await getAllUsersUseCase();
-            return res.json({message:users})
+            return res.status(200).json({message:users})
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(500).json({message:e.message})
         }
     }
 
     async deleteUser(req,res){
         let {id} = req.params
         if(!id){
-            return res.status(403).json({error:" id is not valid"})
+            return res.status(400).json({error:" id is not valid"})
         }
         try{
             await deleteUserUseCase(id)
-            return res.json({message:"user deleted "})
+            return res.status(200).json({message:"user deleted "})
         }catch(e){
-            console.log(e);
-            return res.status(403).json({error:e.message})
+            return res.status(500).json({error:e.message})
         }
     }
 

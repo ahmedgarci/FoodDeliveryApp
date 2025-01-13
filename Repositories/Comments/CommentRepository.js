@@ -2,11 +2,20 @@ const Comment = require("../../Entities/Commentaires");
 const FoodRepository = require("../Food/FoodRepository");
 
 class CommentsRepository{
-//TO FIX
+
+    static async getComment(commentId){
+        try{
+            const comment = await Comment.findById(commentId).populate("user")
+            return comment;
+        }catch(e){
+            throw new Error("cannot get comment with id"+commentId)            
+        }
+    }    
+
     static async createComment({userId,comment}){
         try{
             const SavedComment = await Comment.create({user:userId,commentaire:comment})
-            return SavedComment._id
+            return SavedComment._id;
         }catch(e){
             throw new Error("error occured while creating the comment ")
         }
@@ -19,7 +28,7 @@ class CommentsRepository{
             food.comment.push(CommentId)
             await food.save()
         }catch(e){
-            console.log(e);
+            throw new Error("error occured while saving food comment")
         }
     }
 
@@ -27,9 +36,8 @@ class CommentsRepository{
     static async DeleteComment(commentId){
         try{
             const DeletedComment = await Comment.findByIdAndDelete(commentId)
-            await DeletedComment.save()
         }catch(e){
-            console.log(e);
+            throw new Error("error occured while deleting food comment")            
         }
     }
 

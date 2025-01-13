@@ -11,6 +11,8 @@ app.use(express.json())
 app.use(cookieParser())
 
 
+
+
 // AUTHENTICATION ROUTES
 const AuthController = require("./Controller/Auth/AuthController")
 app.post("/register", (req,res)=>AuthController.Register(req,res))
@@ -38,7 +40,7 @@ app.post("/Cart/add/:CartId",checkTokenValidity,(req,res)=>ordersController.addI
 const CommentController = require("./Controller/Comments/CommentsController")
 const CommentsController = new CommentController()
 app.post("/food/:id/comment",checkTokenValidity,(req,res)=>CommentsController.PostComment(req,res))
-app.delete("/food/:id/comment",checkTokenValidity,(req,res)=>CommentsController.DeleteComment(req,res))
+app.delete("/food/comment/:id",checkTokenValidity,(req,res)=>CommentsController.DeleteComment(req,res))
     
 
 

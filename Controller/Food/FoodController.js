@@ -9,13 +9,17 @@ module.exports = class FoodController{
     async RegisterFood(req,res){
         var {price,name,description,imageId,category} = req.body;
         try{
-            ValidateFoodRequestcreate({_name:name,_price:price,_description:description,_imageFile:imageId});
-            await createNewFood({_price:price,_name:name,_description:description,
+            ValidateFoodRequestcreate({_name:name,_price:parseInt(price),
+                _description:description,_imageFile:imageId,
+                Category:category
+            });
+            await createNewFood({_price:parseInt(price),_name:name,_description:description,
                 _imageId:imageId,
-                _categoryId:category});  
+                _categoryId:category
+            });  
             return res.json({message:"new food was created :"+name});
         }catch(e){
-            return res.status(403).json({error:e.message})
+            return res.status(400).json({error:e.message})
         }
     }
 
@@ -27,7 +31,7 @@ module.exports = class FoodController{
             await deleteFood(id);
             return res.json({message:"deleted successfully ! "});
         }catch(e){
-            return res.status(403).json({error:e.message})
+            return res.status(400).json({error:e.message})
         }
     }
 
@@ -37,7 +41,7 @@ module.exports = class FoodController{
             const x = await GetAllFoods()
             return res.json({message:x});
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(500).json({message:e.message})
         }
     }
 
@@ -58,7 +62,7 @@ module.exports = class FoodController{
         try{
             return res.json({message:await GetFoodById(FoodId)});
         }catch(e){
-            return res.json({message:e.message})
+            return res.status(400).json({message:e.message})
         }
     }
 
