@@ -34,6 +34,7 @@ const checkTokenValidity = require("./Infrastructure/Middelwares/checkTokenValid
 const ordersController = new OrdersController();
 app.post("/Order/place",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
 app.post("/Cart/add/:CartId",checkTokenValidity,(req,res)=>ordersController.addItem(req,res))
+app.delete("/Cart/add/:CartId",checkTokenValidity,(req,res)=>ordersController.deleteItem(req,res))
 
 
 // COMMENTS ROUTES
