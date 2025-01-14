@@ -18,7 +18,9 @@ const userRepository = require("../../Repositories/User/userRepository");
                 role:[user.role.role]
             })
             return {
-                token:jwtToken
+                token:jwtToken,
+                role:user.role.role,
+                name:user.username
             }
             }catch(e){
                 throw new Error(e.message)

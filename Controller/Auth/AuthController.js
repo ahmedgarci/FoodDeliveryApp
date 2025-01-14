@@ -28,8 +28,10 @@ class AuthController{
         const{email,password} = req.body;
         try{
             LoginRequestValidation({_email:email,_password:password})
-            const {token} = await LoginUseCase({_email:email,_password:password})
-            res.cookie("token",token)
+            const {token, role,name} = await LoginUseCase({_email:email,_password:password})
+            res.cookie("token",token);
+            res.cookie("role",role);
+            res.cookie("name",name);
             return res.json({"token":token})
         }catch(e){
             console.log(e.message);
