@@ -2,22 +2,24 @@ import { useContext, useState } from "react";
 import ErrorComponent from "../Common/ErrorComponent";
 import { userContext } from "../../Context/UserContext";
 import { Login } from "../../Services/Auth/Login";
+import { useNavigate } from "react-router";
 
 function LoginForm(){
+    const navigate = useNavigate();
     const [user, setUser] = useState({ email: null, password: null });
     const [errors, setErrors] = useState([]);
     const {setUserInfo} = useContext(userContext)
 
     async function handleLogin(e) {
       e.preventDefault();
-      const { response, error } = await Login ({ email: user.email, password: user.password });
+      const {error } = await Login ({ email: user.email, password: user.password });
       if (error) {
         setErrors([error]);
         return
       }
+      navigate("/");
       setErrors(null)
       setUserInfo(user.email)
-
     }
 
     return(

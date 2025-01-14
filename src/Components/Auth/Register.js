@@ -1,15 +1,16 @@
 import { useState } from "react"
 import { Register } from "../../Services/Auth/Register"
 import ErrorComponent from "../Common/ErrorComponent";
-
+import { useNavigate } from "react-router";
 function RegisterForm(){
-
+    const navigate = useNavigate();
     const [user,setUser] = useState({email:null,phone:null,password:null,address:null,username:null})
     const [errors, setErrors] = useState([]);
   
     async function handleRegister(e) {
       e.preventDefault();
       const { response, error } = await Register(user);
+      navigate("/activate");
       if (error) {
         setErrors([error]);
       }

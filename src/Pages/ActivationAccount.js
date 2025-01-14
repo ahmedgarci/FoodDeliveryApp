@@ -17,7 +17,7 @@ function ActivateAccount() {
         const { response,error} = await ActivateUserAccount(value)
         error ? setError(error) : 
         setSuccessMsg("account activated u are be redirected to login page")
-        
+
     }
 
 
@@ -50,7 +50,7 @@ function ActivateAccount() {
              }
             <ReactCodeInput 
                 type="text"
-                fields={6}
+                fields={5}
                 inputStyle={inputStyle} 
                 inputStyleInvalid={inputStyleFocus} 
                 onChange={CheckIfCodeFilled}

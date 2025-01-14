@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ErrorComponent from "../Common/ErrorComponent";
 import LoadingComponent from "../Common/LoadingComponent";
 import { FoodModal } from "./Modal";

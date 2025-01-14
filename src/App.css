@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.latestfood{
+  background-image: url("./Components/Food/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+} 

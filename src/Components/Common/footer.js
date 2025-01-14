@@ -1,119 +1,94 @@
 import React from "react";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import { Facebook, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer style={{ height: "auto", backgroundColor: "#212121" }}>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5,1fr)",
-          textAlign: "left",
-          color: "white",
-          placeItems: "center",
-          paddingTop: "30px",
-          fontWeight: "300",
-        }}
-      >
-        <div>
-          <h4 style={{ fontWeight: "600", paddingBottom: "10px" }}>
-            Our top cities
-          </h4>
-          <h4>San Fransisco</h4>
-          <h4>Miami</h4>
-          <h4>San Diego</h4>
-          <h4>East Bay</h4>
-          <h4>Long Beach</h4>
-        </div>
-        <div>
-          <h4>Los Angeles</h4>
-          <h4>Washington DC</h4>
-          <h4>Seattle</h4>
-          <h4>Portland</h4>
-          <h4>Nashville</h4>
-        </div>
-        <div>
-          <h4>NY City</h4>
-          <h4>Orange County</h4>
-          <h4>Atalanta</h4>
-          <h4>Charlotte</h4>
-          <h4>Denver</h4>
-        </div>
-        <div>
-          <h4>Chicago</h4>
-          <h4>Phoenix</h4>
-          <h4>Las Vegas</h4>
-          <h4>Sacramento</h4>
-          <h4>Okalahoma City</h4>
-        </div>
-        <div>
-          <h4>Columbus</h4>
-          <h4>New Mexico</h4>
-          <h4>Albuquerque</h4>
-          <h4>Sacramento</h4>
-          <h4>New Orleans</h4>
-        </div>
-      </div>
-      <hr
-        style={{
-          marginLeft: "30px",
-          marginRight: "30px",
-          marginTop: "30px",
-          opacity: "50%",
-        }}
-      />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5,1fr)",
-          textAlign: "left",
-          color: "white",
-          placeItems: "center",
-          paddingTop: "30px",
-          fontWeight: "300",
-        }}
-      >
-        <div>
-          <h4 style={{ fontWeight: "600", paddingBottom: "10px" }}>Company</h4>
-          <h4>About us</h4>
-          <h4>Team</h4>
-          <h4>Careers</h4>
-          <h4>Blog</h4>
-        </div>
-        <div>
-          <h4 style={{ fontWeight: "600", paddingBottom: "10px" }}>Conatact</h4>
-          <h4>Help & Support</h4>
-          <h4>Partner with us </h4>
-          <h4>Ride with us</h4>
-        </div>
-        <div>
-          <h4 style={{ fontWeight: "600", paddingBottom: "10px" }}>Legal</h4>
-          <h4>Terms & Conditions</h4>
-          <h4>Refund & Cancellation</h4>
-          <h4>Privacy Policy</h4>
-          <h4>Cookie Policy</h4>
-        </div>
-
-        <div style={{ gridColumn: "span 2", paddingBottom: "30px" }}>
-          <h4 style={{ fontWeight: "400", paddingBottom: "10px" }}>
-            Follow US
-          </h4>
-
-          <div style={{ display: "flex", gap: "10px" }}>
-            <FacebookIcon style={{ color: "#1877f2", fontSize: 20 }} />
-            <TwitterIcon style={{ color: "#1da1f2", fontSize: 20 }} />
-            <InstagramIcon style={{ color: "#e4405f", fontSize: 20 }} />
+    <footer className="bg-gray-900 text-white px-20">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div>
+            <h4 className="font-semibold mb-4">Our top cities</h4>
+            <ul className="space-y-2">
+              {["San Francisco", "Miami", "San Diego", "East Bay", "Long Beach"].map((city) => (
+                <li key={city}>{city}</li>
+              ))}
+            </ul>
           </div>
-          <h4>Receive exclusive offers in your mailbox</h4>
-          <div class="mt-8 flex justify-center">
-            <input
-              type="text"
-              placeholder="Enter Your Address"
-              class="p-3 rounded-l-md text-gray-700"
-            />
-            <button class="bg-red-500 p-3 rounded-r-md">Send</button>
+          <div>
+            <ul className="space-y-2 mt-8 sm:mt-0">
+              {["Los Angeles", "Washington DC", "Seattle", "Portland", "Nashville"].map((city) => (
+                <li key={city}>{city}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <ul className="space-y-2 mt-8 md:mt-0">
+              {["NY City", "Orange County", "Atlanta", "Charlotte", "Denver"].map((city) => (
+                <li key={city}>{city}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <ul className="space-y-2 mt-8 lg:mt-0">
+              {["Chicago", "Phoenix", "Las Vegas", "Sacramento", "Oklahoma City"].map((city) => (
+                <li key={city}>{city}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <ul className="space-y-2 mt-8 lg:mt-0">
+              {["Columbus", "New Mexico", "Albuquerque", "Sacramento", "New Orleans"].map((city) => (
+                <li key={city}>{city}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <hr className="my-8 opacity-50" />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-2">
+              {["About us", "Team", "Careers", "Blog"].map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Contact</h4>
+            <ul className="space-y-2">
+              {["Help & Support", "Partner with us", "Ride with us"].map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2">
+              {["Terms & Conditions", "Refund & Cancellation", "Privacy Policy", "Cookie Policy"].map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:col-span-2 mt-8 lg:mt-0">
+            <h4 className="font-semibold mb-4">Follow Us</h4>
+            <div className="flex space-x-4 mb-4">
+              <Facebook className="text-blue-500" size={20} />
+              <Twitter className="text-sky-500" size={20} />
+              <Instagram className="text-pink-500" size={20} />
+            </div>
+            <h4 className="mb-4">Receive exclusive offers in your mailbox</h4>
+            <div className="flex">
+              <input
+                type="text"
+                placeholder="Enter Your Email"
+                className="p-3 rounded-l-md text-gray-700 w-full"
+              />
+              <button className="bg-red-500 p-3 rounded-r-md whitespace-nowrap">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
       </div>

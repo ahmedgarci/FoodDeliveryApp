@@ -28,6 +28,9 @@ export function FoodModal() {
     }else{
       setErrors(null)
       setSuccessMsg(response.data.message)
+      setTimeout(() => {
+        setOpenModal(false);
+      }, 1000);
     }
    
   };

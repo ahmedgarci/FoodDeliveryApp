@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { cartContext } from "../../Context/CartContext"
 import { ConfirmOrder } from "../../Services/Order/PlaceOrder"
-
+import { useNavigate } from "react-router";
 
 function Voucher(){
-    
+    const navigate = useNavigate();
     const {calculateSum,cartId} = useContext(cartContext)
 
     async function HandleOrderConfirmation(){
@@ -12,7 +12,7 @@ function Voucher(){
       if(error){
         alert(error)
       }else{
-        console.log(response);
+        navigate("/success")
       }
     }
     

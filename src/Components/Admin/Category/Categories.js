@@ -9,7 +9,7 @@ function Categories(){
 
   const {data,loading,error} =  Fetch({url:"http://localhost:3500/category",method:"GET"})
   const [categories,setCategories]= useState(data|| null)
-  
+  console.log(data)
   useEffect(()=>{
     setCategories(data)
   },[data])
