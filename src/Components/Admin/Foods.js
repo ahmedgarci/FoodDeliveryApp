@@ -10,13 +10,18 @@ function Foods() {
     url: "http://localhost:3500/food/all",
     method: "GET",
   });
-  
+
+  const refresh = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 800);
+  };
 
   if (error) return <ErrorComponent error={error} />;
   if (loading) return <LoadingComponent />;
 
   return (
-    <section id="food" className="mb-8"> 
+    <section id="food" className="mb-8">
       <h2 className="text-2xl font-semibold mb-4">Food</h2>
       <div className="bg-white p-6 rounded shadow">
         <FoodModal>Add Food</FoodModal>
@@ -41,17 +46,16 @@ function Foods() {
                     <DeleteComponent
                       Id={food._id}
                       Url={"http://localhost:3500/food/"}
-/>
+                      OnClick={refresh}
+                    />
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-
-      
     </section>
-  )
+  );
 }
 
 export { Foods };

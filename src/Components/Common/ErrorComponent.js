@@ -9,4 +9,4 @@ function ErrorComponent({error}){
       )
 }
 
-export default ErrorComponent
+export default ErrorComponent;

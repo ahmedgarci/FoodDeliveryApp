@@ -14,6 +14,11 @@ function Categories(){
     setCategories(data)
   },[data])
 
+  const refresh = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 800);
+  };
   
   if (error) return <ErrorComponent  error={error}/>;
   if (loading) return <LoadingComponent />;
@@ -38,7 +43,8 @@ function Categories(){
                   <td className="border-b p-4">
                     <DeleteComponent
                   Url={"http://localhost:3500/category/"}
-                  Id={category._id}/> 
+                  Id={category._id}
+                  OnClick={refresh}/> 
                   </td>
                 </tr>
               )))

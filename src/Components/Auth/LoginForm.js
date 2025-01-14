@@ -17,7 +17,9 @@ function LoginForm(){
         setErrors([error]);
         return
       }
+      
       navigate("/");
+      window.location.reload();
       setErrors(null)
       setUserInfo(user.email)
     }

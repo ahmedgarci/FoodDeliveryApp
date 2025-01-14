@@ -4,6 +4,7 @@ import ErrorComponent from "../Common/ErrorComponent";
 import { UploadImageComponent } from "./UploadImageComponent";
 import { CategoriesList } from "./Category/CategoriesList";
 import CreateNewFood from "../../Services/Admin/CreateNewFood";
+import SuccessCompo from "../Common/successCompo";
 
 export function FoodModal() {
   const [openModal, setOpenModal] = useState(false);
@@ -28,9 +29,11 @@ export function FoodModal() {
     }else{
       setErrors(null)
       setSuccessMsg(response.data.message)
+
       setTimeout(() => {
         setOpenModal(false);
-      }, 1000);
+        window.location.reload();
+      }, 1800);
     }
    
   };
@@ -42,7 +45,7 @@ export function FoodModal() {
         <Modal.Header>Add New Food</Modal.Header>
         <Modal.Body>
           <div className="space-y-4">
-            {(errors && errors.length > 0) ? <ErrorComponent error={errors} /> : <p>{Success}</p> }
+            {(errors && errors.length > 0) ? <ErrorComponent error={errors} /> :<SuccessCompo msg={Success}/> }
             
             <div>
               <Label htmlFor="foodName" value="Food Name" />

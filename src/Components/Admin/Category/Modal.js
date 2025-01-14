@@ -11,6 +11,10 @@ import { POST} from "../../../Services/Common/POST";
         if(error){
             console.log(error);
         }
+        setTimeout(() => {
+          setOpenModal(false);
+          window.location.reload();
+        }, 1800);
     }
 
   return (

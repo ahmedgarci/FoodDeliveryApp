@@ -15,6 +15,11 @@ function Users(){
     setUsers(data);
   }, [data]);
 
+  const refresh = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 800);
+  };
   if (error) return <ErrorComponent  error={error}/>;
   if (loading) return <LoadingComponent />;
     return(
@@ -39,7 +44,8 @@ function Users(){
                 <td>
                   <DeleteComponent
                   Id={user._id}
-                  Url={"http://localhost:3500/users/"}/>
+                  Url={"http://localhost:3500/users/"}
+                  OnClick={refresh}/>
                 </td>
               </tr>
             ))}

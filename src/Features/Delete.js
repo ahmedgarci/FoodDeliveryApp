@@ -9,14 +9,15 @@ function DeleteComponent({ Id, Url, DeleteFunction }) {
         data: Id,
       });
 
+      window.location.reload();
+
       if (error) {
         alert("An error occurred while deleting the item.");
       } else {
         DeleteFunction();
-        
       }
     } catch (error) {
-      alert("An error occurred while deleting the item.");
+      console.log(error);
     }
   };
 

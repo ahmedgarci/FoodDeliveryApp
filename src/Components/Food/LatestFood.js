@@ -15,7 +15,6 @@ function LatestFood() {
     url: "http://localhost:3500/food/all",
     method: "GET",
   });
-
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 8;
 
@@ -51,6 +50,7 @@ function LatestFood() {
         <Grid container spacing={4} sx={{ mb: 4 }}>
           {displayedData.length > 0 ? (
             displayedData.map((foodElement) => (
+              
               <Grid item xs={12} sm={6} md={3} key={foodElement._id}>
                 <FoodCard
                   id={foodElement._id}
@@ -77,7 +77,7 @@ function LatestFood() {
             sx={{
               backgroundColor: "#c27803",
               "&:hover": {
-                backgroundColor: "#a36402", // Optional: Slightly darker color for hover effect
+                backgroundColor: "#a36402",
               },
             }}
             onClick={prevPage}
@@ -90,7 +90,7 @@ function LatestFood() {
             sx={{
               backgroundColor: "#c27803",
               "&:hover": {
-                backgroundColor: "#a36402", // Optional: Slightly darker color for hover effect
+                backgroundColor: "#a36402",
               },
             }}
             onClick={nextPage}
