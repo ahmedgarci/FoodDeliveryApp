@@ -1,12 +1,14 @@
 import { createContext, useState } from "react";
 import { POST } from "../Services/Common/POST";
+import axios from "axios";
+import { Delete } from "../Services/Admin/Delete";
 
 const cartContext = createContext();
 
 function CartContextProvider({ children }) {
   const [foodsInCart, setFoodsInCart] = useState([]);
   const [itemsNumber, setItemsNumber] = useState(0);
-  const [cartId, setCartId] = useState("67570bb0da1b343b39cbfc3b");
+  const [cartId, setCartId] = useState(0);
 
   async function addFoodToCart(id, image, price, name) {
     const isFound = foodsInCart.some((food) => food.id === id);
@@ -20,24 +22,36 @@ function CartContextProvider({ children }) {
     }
 
     try {
-      console.log(cartId);
       const { error, response } = await POST({
-        url: `http:/localhost:3500/Cart/add/${cartId}`,
+        url: `http://localhost:3500/Cart/add/${cartId}`,
         data: { FoodId: id },
       });
 
       if (error) {
-        alert(error);
+        console.log(error);
       } else {
-        console.log(response);
+        console.log(cartId);
         setCartId(response.data);
       }
     } catch (e) {
-      console.log("cart context need verification")
+      console.log("Can't add item to your cart.");
     }
   }
 
-  function deleteFood(id) {
+  async function deleteFood(id) {
+      try{
+         const {response,error} = await POST({url:`http://localhost:3500/Cart/delete/${cartId}`,data:{FoodId:id}})
+
+         if(response){
+          console.log(response);
+         }
+         if(error){
+          console.log(error);
+         }
+      }catch(e){
+        console.log(e);
+      }
+    
     setFoodsInCart((prevFoods) => prevFoods.filter((food) => food.id !== id));
     setItemsNumber((prevCount) => Math.max(0, prevCount - 1));
   }

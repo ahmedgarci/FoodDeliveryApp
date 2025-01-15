@@ -46,7 +46,7 @@ function NavigationBar() {
           {role() ? (
             <></>
           ) : (
-            <NavLink to={"/admin"} className="text-yellow-900 font-semibold">
+            <NavLink to={"/admin/stat"} className="text-yellow-900 font-semibold">
               ADMIN PAGE
             </NavLink>
           )}

@@ -3,8 +3,7 @@ import { cartContext } from "../../Context/CartContext";
 
 function DisplayAllOrderFood(){
 
-        const { foodsInCart } = useContext(cartContext)
-
+        const { foodsInCart, deleteFood } = useContext(cartContext)
         if (!foodsInCart || foodsInCart.length === 0) {
           return <p className="text-gray-600">Pas de produit dans le panier</p>;
         }
@@ -21,7 +20,7 @@ function DisplayAllOrderFood(){
                 </div>
                 <p className="text-gray-800 font-semibold">Prix: {food.price}$</p>
               </div>
-              <button className="bg-red-600 text-white rounded-md" >delete</button>
+              <button onClick={async()=>deleteFood(food.id)}>X</button>
 
             </div>
           </div>

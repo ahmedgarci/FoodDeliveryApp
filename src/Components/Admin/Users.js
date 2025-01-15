@@ -9,17 +9,21 @@ function Users(){
     url: "http://localhost:3500/users",
     method: "GET"
   });
-  const [users,setUsers] = useState([data])
-
+  const [FetchedUsers,setFecthedUsers] = useState([])
+  console.log(data);
   useEffect(() => {
-    setUsers(data);
+    if (data) {
+      setFecthedUsers(data);
+    }
   }, [data]);
+  
 
-  const refresh = () => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 800);
+
+  const handleDelete = (id) => {
+    setFecthedUsers((prevData) => prevData.filter((item) => item._id !== id));
   };
+
+
   if (error) return <ErrorComponent  error={error}/>;
   if (loading) return <LoadingComponent />;
     return(
@@ -28,24 +32,26 @@ function Users(){
         <div class="bg-white p-6 rounded shadow">
           <table class="w-full text-left">
             <thead>
-              <tr>
-                <th class="border-b p-4">Username</th>
-                <th class="border-b p-4">Email</th>
-                <th class="border-b p-4">Status</th>
-                <th class="border-b p-4">Actions</th>
+              <tr className="border-b p-4 text-center">
+                <th >Username</th>
+                <th >Email</th>
+                <th >Status</th>
+                <th >Actions</th>
               </tr>
             </thead>
             <tbody>
-            {users && users.length > 0 && users.map((user) => (
-              <tr>
+            {FetchedUsers && FetchedUsers.length > 0 && FetchedUsers.map((user) => (
+              <tr className="text-center">
                <td>{user?.username}</td>
                 <td>{user?.email}</td>
-                
+                <td>{user?.isActive? "Active": "Not Yet"}</td>
                 <td>
                   <DeleteComponent
                   Id={user._id}
                   Url={"http://localhost:3500/users/"}
-                  OnClick={refresh}/>
+                  DeleteFunction={()=>handleDelete(user._id)
+                  }
+                  />
                 </td>
               </tr>
             ))}
