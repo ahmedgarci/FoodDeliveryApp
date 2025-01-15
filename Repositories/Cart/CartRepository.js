@@ -1,34 +1,37 @@
-const Cart = require("../../Entities/CartEntity")
+const mongoose = require("mongoose");
+const Cart = require("../../Entities/CartEntity");
+const Food = require("../../Entities/FoodEntity");
 
+module.exports = class CartRepository {
+  // Get or Create Cart
+  static async getOrCreateCart(CartId) {
+    return mongoose.Types.ObjectId.isValid(CartId)
+      ? await Cart.findById(CartId) || await Cart.create({ products: [], TotalPrice: 0 })
+      : await Cart.create({ products: [], TotalPrice: 0 });
+  }
 
-module.exports = class CartRepository{
+  static async AddItemToCart({ CartId, FoodId }) {
+    try {
+      const cart = await CartRepository.getOrCreateCart(CartId);
+      const foodItem = await Food.findById(FoodId).orFail(() => new Error("Food item not found"));
+      cart.products.push(foodItem);
+//      cart.TotalPrice = cart.products.reduce((total, item) => total + item.Price, 0);
 
-
-
-    static async AddItemToCart({CartId,FoodId}){
-        try{
-            var cart = await Cart.findById(CartId).or((await Cart.create({products:[],TotalPrice:0})).save());
-            cart.products.push(FoodId)
-            await cart.save()
-//            cart.TotalPrice = cart.products.map((totale,item) => totale+item.Price )
-//            await cart.save()
-            return cart._id
-        }catch(e){
-            throw e.message
-        }
+      await cart.save();
+      return cart._id;
+    } catch (e) {
+      throw new Error(e.message || "Failed to add item to cart");
     }
+  }
 
-
-
-    static async deleteItemFromCart({CartId,FoodId}){
-        try{
-            const Cart = await Cart.findById(CartId).orFail("cart not found")
-            const UpdatedCart = Cart.products.filter(item=>item._id.toString() !== FoodId.toString())
-            await UpdatedCart.save()
-        }catch(e){
-            throw e
-        }
+  static async deleteItemFromCart({ CartId, FoodId }) {
+    try {
+      
+        const cart = await Cart.findById(CartId).orFail("cart not found")
+        cart.products.filter(item=>item._id.toString() !== FoodId.toString())
+        cart.save()
+    } catch (e) {
+      throw new Error(e.message || "Failed to delete item from cart");
     }
-
-
-}
+  }
+};

@@ -6,6 +6,7 @@ const GetFoodById = require("../../UseCases/Food/GetFoodById");
 
 module.exports = class FoodController{
 
+
     async RegisterFood(req,res){
         var {price,name,description,imageId,category} = req.body;
         try{
@@ -37,7 +38,6 @@ module.exports = class FoodController{
 
     async getAllFoods(req,res){
         try{
-            // TO DO PAGINATION
             const x = await GetAllFoods()
             return res.json({message:x});
         }catch(e){
