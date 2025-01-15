@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 import ReactCodeInput from 'react-code-input';
 import { ActivateUserAccount } from '../Services/Auth/ActivateAccount';
-import ErrorComponent from '../Components/Common/ErrorComponent';
 
 function ActivateAccount() {
     const [error,setError]= useState(null)
     const [successMsg,setSuccessMsg]=useState(null)
 
     function CheckIfCodeFilled(value){
-        if(value.length == 6){
+        if(value.length == 5){
             handleActivationAccount(value) 
         }
     }
 
     async function handleActivationAccount(value){
-        const { response,error} = await ActivateUserAccount(value)
-        error ? setError(error) : 
-        setSuccessMsg("account activated u are be redirected to login page")
+        const { response,error} = await ActivateUserAccount(value) 
+        console.log(error);       
+        if(response){
+            setError(null)
+            setSuccessMsg("account activated u are be redirected to login page") 
+            
+        }
+        if(error){
+            setError(error)
+            setSuccessMsg(null)
+        }
         
     }
 
@@ -32,25 +39,25 @@ function ActivateAccount() {
         fontSize: '1.25rem', 
         outline: 'none',
         transition: 'border-color 0.2s, box-shadow 0.2s',
-    };
+    }
 
     const inputStyleFocus = {
         ...inputStyle,
         borderColor: '#3b82f6', 
         boxShadow: '0 0 0 2px rgba(59, 130, 246, 0.4)', 
-    };
+    }
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
             <h1 className="text-2xl font-bold text-gray-800 mb-1">
                 Activate Your Account
             </h1>
-            {error ? <h2 className=' font-semibold text-red-600 py-5'>{error}</h2>:
-                <h2 className=' text-green-500'>{successMsg}</h2>
-             }
+            {error &&  <h2 className=' font-semibold text-red-600 py-5'>{error}</h2> }
+            {successMsg &&    <h2 className=' text-green-500'>{successMsg}</h2>
+            }
             <ReactCodeInput 
                 type="text"
-                fields={6}
+                fields={5}
                 inputStyle={inputStyle} 
                 inputStyleInvalid={inputStyleFocus} 
                 onChange={CheckIfCodeFilled}

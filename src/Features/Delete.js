@@ -8,7 +8,6 @@ function DeleteComponent({ Id, Url, DeleteFunction }) {
         url: Url,
         data: Id,
       });
-
       if (error) {
         alert("An error occurred while deleting the item.");
       } else {

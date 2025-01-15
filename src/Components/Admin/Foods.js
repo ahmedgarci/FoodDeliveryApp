@@ -10,7 +10,6 @@ function Foods() {
     url: "http://localhost:3500/food/all",
     method: "GET",
   });
-
   const [fetchedData, setFetchedData] = useState([]);
 
   useEffect(() => {
@@ -33,20 +32,20 @@ function Foods() {
         <FoodModal>Add Food</FoodModal>
         <table className="w-full text-left">
           <thead>
-            <tr>
-              <th className="border-b p-4">Food Name</th>
-              <th className="border-b p-4">Category</th>
-              <th className="border-b p-4">Price</th>
-              <th className="border-b p-4">Actions</th>
+            <tr className="text-center border-b p-4">
+              <th > Name</th>
+              <th >Category</th>
+              <th >Price</th>
+              <th >Actions</th>
             </tr>
           </thead>
           <tbody>
             {fetchedData.length > 0 ? (
               fetchedData.map((food) => (
-                <tr key={food._id}>
+                <tr key={food._id} className="text-center">
                   <td>{food?.name}</td>
                   <td>{food?.categoryName?.name}</td>
-                  <td>{food?.price}</td>
+                  <td>{food?.Price}</td>
                   <td>
                     <DeleteComponent
                       Id={food._id}
