@@ -1,4 +1,5 @@
 const { AddItemToCart } = require("../../Repositories/Cart/CartRepository");
+const DeleteItemFromCartUseCase = require("../../UseCases/Cart/DeleteItemFromCartUseCase");
 const PlaceOrder = require("../../UseCases/Order/PlaceOrder");
 
 module.exports = class OrderController{
@@ -10,10 +11,11 @@ module.exports = class OrderController{
                return res.status(400).json({error:"invalid cart id"})
             }
             await PlaceOrder(CartId,req.user.id);
-            console.log("order placed");
+
             return res.json("order placed !")
 
         }catch(e){
+            console.log(e);
             return res.status(500).json(e.message)
         }
     }
@@ -22,7 +24,6 @@ module.exports = class OrderController{
         try {
             const { CartId } = req.params;
             const { FoodId } = req.body;
-            console.log(CartId);
             if (!FoodId) {
                 return res.status(400).json({ error: "FoodId are required." });
             }
@@ -40,10 +41,12 @@ module.exports = class OrderController{
 
     async deleteItem(req,res){
         try{
-            const {CartId} = req.Params;
-            if(!CartId){throw new Error("invalid food Id !")}
-            await PlaceOrder(CartId,req.user.data.id);
-            return res.status(200).json("order placed !")
+            console.log("a");
+            const {CartId} = req.params;
+            const {FoodId} = req.body;
+            if(!CartId || !FoodId){throw new Error("invalid Cart Id || FoodId!")}
+            await DeleteItemFromCartUseCase({FoodId:FoodId,CartId:CartId});
+            return res.status(200).json("item deleted")
         }catch(e){
             return res.status(400).json(e.message)
         }

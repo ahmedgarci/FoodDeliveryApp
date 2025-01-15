@@ -46,19 +46,18 @@ class UserRepository {
     static async getAllUsers(){
         try{
             const allusers = await User.find({})
-            .select(["username","email","address"])
+            .select(["username","email","address","isActive"])
             .orFail(()=>new Error("error while fetching users"))
             return allusers;
         }catch(e){
-            throw new Error(e.message)
+            throw  e.message
         }
     }
     static async deleteUser(id){
-        console.log(id);
         try{
             return await User.findByIdAndDelete(id).orFail(()=>new Error("error while deleting user"))
         }catch(e){
-            throw new Error(e.message)
+            throw e.message
         }
     }
 

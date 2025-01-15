@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+// mongodb+srv://FoodDeliveryDB:0000@cluster.yyayk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster
+
 module.exports = ()=>{
     try{
     mongoose.connect("mongodb://localhost:27017/Food-delivery")
