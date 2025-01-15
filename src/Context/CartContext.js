@@ -1,7 +1,5 @@
 import { createContext, useState } from "react";
 import { POST } from "../Services/Common/POST";
-import axios from "axios";
-import { Delete } from "../Services/Admin/Delete";
 
 const cartContext = createContext();
 
@@ -28,13 +26,13 @@ function CartContextProvider({ children }) {
       });
 
       if (error) {
-        console.log(error);
+        alert(error);
       } else {
         console.log(cartId);
         setCartId(response.data);
       }
     } catch (e) {
-      console.log("Can't add item to your cart.");
+      alert("Can't add item to your cart.");
     }
   }
 

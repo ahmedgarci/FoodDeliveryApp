@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ErrorComponent from "../Common/ErrorComponent";
 import LoadingComponent from "../Common/LoadingComponent";
 import { FoodModal } from "./Modal";
@@ -10,11 +10,16 @@ function Foods() {
     url: "http://localhost:3500/food/all",
     method: "GET",
   });
+  const [fetchedData, setFetchedData] = useState([]);
 
-  const refresh = () => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 800);
+  useEffect(() => {
+    if (data) {
+      setFetchedData(data);
+    }
+  }, [data]);
+
+  const handleDelete = (id) => {
+    setFetchedData((prevData) => prevData.filter((item) => item._id !== id));
   };
 
   if (error) return <ErrorComponent error={error} />;
@@ -27,30 +32,36 @@ function Foods() {
         <FoodModal>Add Food</FoodModal>
         <table className="w-full text-left">
           <thead>
-            <tr>
-              <th className="border-b p-4">Food Name</th>
-              <th className="border-b p-4">Category</th>
-              <th className="border-b p-4">Price</th>
-              <th className="border-b p-4">Actions</th>
+            <tr className="text-center border-b p-4">
+              <th > Name</th>
+              <th >Category</th>
+              <th >Price</th>
+              <th >Actions</th>
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.length > 0 &&
-              data.map((food) => (
-                <tr key={food._id}>
+            {fetchedData.length > 0 ? (
+              fetchedData.map((food) => (
+                <tr key={food._id} className="text-center">
                   <td>{food?.name}</td>
                   <td>{food?.categoryName?.name}</td>
-                  <td>{food?.price}</td>
+                  <td>{food?.Price}</td>
                   <td>
                     <DeleteComponent
                       Id={food._id}
                       Url={"http://localhost:3500/food/"}
-                      OnClick={refresh}
+                      DeleteFunction={() => handleDelete(food._id)}
                     />
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="text-center py-4">
+                  No foods available.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

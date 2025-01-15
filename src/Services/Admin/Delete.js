@@ -8,7 +8,8 @@ async function Delete({ url, data }) {
     });
     return response;
   } catch (e) {
-    alert(e)
+    console.log(e);
+
   }
 }
 

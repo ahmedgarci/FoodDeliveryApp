@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import ReactCodeInput from "react-code-input";
 import { ActivateUserAccount } from "../Services/Auth/ActivateAccount";
 
-
-
-
 function ActivateAccount() {
-  
   const [error, setError] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
 
@@ -18,13 +14,14 @@ function ActivateAccount() {
 
   async function handleActivationAccount(value) {
     const { response, error } = await ActivateUserAccount(value);
+    console.log(error);
     if (response) {
       setError(null);
       setSuccessMsg("account activated u are be redirected to login page");
 
       setTimeout(() => {
-       window.location.href = "/auth";
-      }, 800);
+        window.location.href = "/auth";
+      }, 1500);
     }
     if (error) {
       setError(error);

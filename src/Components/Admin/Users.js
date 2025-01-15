@@ -18,7 +18,6 @@ function Users(){
   }, [data]);
   
 
-
   const handleDelete = (id) => {
     setFecthedUsers((prevData) => prevData.filter((item) => item._id !== id));
   };
@@ -49,8 +48,7 @@ function Users(){
                   <DeleteComponent
                   Id={user._id}
                   Url={"http://localhost:3500/users/"}
-                  DeleteFunction={()=>handleDelete(user._id)
-                  }
+                  DeleteFunction={()=>handleDelete(user._id)}
                   />
                 </td>
               </tr>

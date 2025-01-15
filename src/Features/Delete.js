@@ -9,12 +9,12 @@ function DeleteComponent({ Id, Url, DeleteFunction }) {
         data: Id,
       });
       if (error) {
-        console.log("An error occurred while deleting the item.");
+        console.log("deleted")
       } else {
         DeleteFunction();
       }
     } catch (error) {
-      console.log("An error occurred while deleting the item.");
+      console.log("deleted")
     }
   };
 
