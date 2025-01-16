@@ -9,7 +9,7 @@ class MailInfra{
             secure: false, 
             auth: {
                 user: "ahmedgarci146@gmail.com",
-                pass: "klexgpychbehvydc",
+                pass: ",
         },
         });
         return transporter;
