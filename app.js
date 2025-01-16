@@ -14,22 +14,23 @@ app.use(cookieParser())
 
 
 // AUTHENTICATION ROUTES
-const AuthController = require("./Controller/Auth/AuthController")
-app.post("/register", (req,res)=>AuthController.Register(req,res))
-app.post("/login", (req,res)=>AuthController.Login(req,res))
-app.post("/verify", (req,res)=>AuthController.activateAccount(req,res))
+const AuthController = require("./Auth/AuthController")
+const authController = new AuthController();
+app.post("/register", (req,res)=>authController.Register(req,res))
+app.post("/login", (req,res)=>authController.Login(req,res))
+app.post("/verify", (req,res)=>authController.activateAccount(req,res))
+
 
 // FOOD ROUTES 
-const FoodController = require("./Controller/Food/FoodController")
+const FoodController = require("./Food/FoodController")
 const foodController = new FoodController();
-app.get("/food/all",(req,res)=>foodController.getAllFoods(req,res))
-app.get("/food/category",(req,res)=>foodController.getFoodByCategory(req,res))
+app.get("/food/all",(req,res)=>foodController.getAllFood(req,res))
 app.get("/food/:FoodId",(req,res)=>foodController.getFoodById(req,res))
 
 
 
 // ORDER FEATURE
-const OrdersController = require("./Controller/Order/OrdersController");
+const OrdersController = require("./Order/OrdersController");
 const checkTokenValidity = require("./Infrastructure/Middelwares/checkTokenValidity")
 const ordersController = new OrdersController();
 app.post("/Order/place",checkTokenValidity,(req,res)=>ordersController.MakeOrder(req,res))
@@ -38,7 +39,7 @@ app.post("/Cart/delete/:CartId",checkTokenValidity,(req,res)=>ordersController.d
 
 
 // COMMENTS ROUTES
-const CommentController = require("./Controller/Comments/CommentsController")
+const CommentController = require("./Comments/CommentsController")
 const CommentsController = new CommentController()
 app.post("/food/:id/comment",checkTokenValidity,(req,res)=>CommentsController.PostComment(req,res))
 app.delete("/food/comment/:id",checkTokenValidity,(req,res)=>CommentsController.DeleteComment(req,res))
@@ -48,9 +49,9 @@ app.delete("/food/comment/:id",checkTokenValidity,(req,res)=>CommentsController.
 
 // ADMIN ROUTES
 const authorizeAdmin = require("./Infrastructure/Middelwares/authorizeAdmin")
-const CategoryController = require("./Controller/Category/CategoryController")
-const UserController = require("./Controller/User/UserController")
-const ImageController = require("./Controller/Image/ImageController")
+const CategoryController = require("./Category/CategoryController")
+const UserController = require("./user/UserController")
+const ImageController = require("./Image/ImageController")
 const imageController = new ImageController();
 const userController = new UserController();
 const categoryController = new CategoryController()

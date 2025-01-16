@@ -1,6 +1,6 @@
 const MailInfra = require("./mailInfra");
-const TokenRepository = require("../../Repositories/Token/tokenRepository");
-const UserRepository = require("../../Repositories/User/userRepository");
+const TokenRepository = require("../../Auth/Entities/TokenEntity");
+const UserRepository = require("../../Auth/Entities/userEntity");
 
 
 
@@ -21,6 +21,7 @@ class MailService{
                 throw new Error("cannot validate account due to incorrect email")            
             }
             if(token.expiresAt < Date.now()){
+                this.sendEmailToUser(token.user.email,"Food Delivery Account activation")
                 throw new Error("token expired a new one is sent")
             }
             user.isActive = !user.isActive;
