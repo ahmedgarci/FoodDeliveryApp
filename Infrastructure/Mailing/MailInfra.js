@@ -26,8 +26,7 @@ class MailInfra{
             html: `
             <p>Your activation code is <h2>${code}</h2></p> 
             <p>it is only valid for 15 minutes ! Hurry up :) </p>
-            <button><a href='http://localhost:3500/verify?email=${receiver}&code=${code}'/> Activate now </a>  </button>            
-            `,
+            `
   });        
     }
 
