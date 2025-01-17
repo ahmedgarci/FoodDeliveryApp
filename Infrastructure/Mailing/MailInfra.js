@@ -9,7 +9,7 @@ class MailInfra{
             secure: false, 
             auth: {
                 user: "ahmedgarci146@gmail.com",
-                pass: ",
+                pass: "",
         },
         });
         return transporter;
@@ -25,10 +25,9 @@ class MailInfra{
             text: "please click here to activate ur account",
             html: `
             <p>Your activation code is <h2>${code}</h2></p> 
-            <p>it is only valid for 15 minutes ! Hurry up :) </p>
-            `
+            <p>it is only valid for 15 minutes ! Hurry up :) </p>`
   });        
-    }
+}
 
 
 

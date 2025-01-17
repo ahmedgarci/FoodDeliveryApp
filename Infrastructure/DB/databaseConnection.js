@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
 
-
 module.exports = ()=>{
     try{
-    mongoose.connect("mongodb+srv://FoodDeliveryDB:0000@cluster.yyayk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster")
+    mongoose.connect("mongodb://localhost:27017/Food-delivery")
         .then(()=>console.log('connexion established !'))
         .catch((e)=>{
             throw new Error(e.message)}
@@ -11,5 +10,4 @@ module.exports = ()=>{
     }catch(e){
         console.log(e);
     }
-    
 }

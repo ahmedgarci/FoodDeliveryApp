@@ -2,14 +2,12 @@ const CartRepository = require("../Repositories/CartRepository")
 
 module.exports = async(FoodId,CartId)=>{
     try{
-        console.log("Food Id: "+FoodId);
-        console.log("Cart Id"+CartId);
-        const cartId = await CartRepository.AddItemToCart({FoodId:FoodId,CartId:CartId})
-        return cartId
+        return await CartRepository.AddItemToCart({FoodId:FoodId,CartId:CartId})
     }catch(e){
         throw e.message
     }
 
 
 
+    
 }

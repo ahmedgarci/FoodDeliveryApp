@@ -32,7 +32,6 @@ module.exports = class OrderController{
             }
             return res.status(200).json(result);
         } catch (e) {
-            console.error("Error adding item to cart:", e);
             return res.status(500).json({ error: "An error occurred while adding the item to your cart. Please try again later." });
         }
     }
