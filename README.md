@@ -1,5 +1,2 @@
-This project is written in clean architecture in order to achieve scalability & evolution .
-I used Cloudinary to upload photos.
-
-Database Schema : 
-![Concept map](https://github.com/user-attachments/assets/72043a48-06c5-4736-a12f-967bd7c4f75e)
+Class Diagram : 
+![UML class](https://github.com/user-attachments/assets/7df4f360-9da2-4df8-ab82-decc477df39d)
