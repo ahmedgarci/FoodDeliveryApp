@@ -1,2 +1,2 @@
 Class Diagram : 
-![UML class](https://github.com/user-attachments/assets/7df4f360-9da2-4df8-ab82-decc477df39d)
+![UML class](https://github.com/user-attachments/assets/6633aabe-84dd-41e0-8479-485c431e4ba9)
